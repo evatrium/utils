@@ -1,0 +1,75 @@
+{
+	"include": [
+		//		"app",
+		"./src"
+	],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	],
+	"exclude": [
+		//		"**/*.test.ts",
+		"node_modules"
+		//		"test/**",
+		//		".history/**"
+	],
+	"compilerOptions": {
+		"paths": {
+			"lib": [
+				"./src/index.ts"
+			],
+			"~/*": [
+				"src/*"
+			]
+		},
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"types": [
+			"vite/client",
+			"node",
+			"react",
+			"vitest/globals",
+			"@testing-library/jest-dom",
+			"jest"
+		],
+		// match output dir to input dir. e.g. dist/index instead of dist/app/index
+		//    "rootDir": ".",
+		"target": "ESNext",
+		"module": "ESNext",
+		// interop between ESM and CJS modules. Recommended by TS
+		"esModuleInterop": true,
+		"allowJs": false,
+		// significant perf increase by skipping checking .d.ts files, particularly those in node_modules. Recommended by TS
+		"skipLibCheck": true,
+		"importHelpers": false,
+		"useDefineForClassFields": true,
+		"experimentalDecorators": true,
+		// output .d.ts declaration files for consumers
+		"declaration": true,
+		//    "declarationMap": true,
+		// output .js.map sourcemap files for consumers
+		"sourceMap": true,
+		// stricter type-checking for stronger correctness. Recommended by TS
+		"strict": true,
+		// linter checks for common issues
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		// noUnused* overlap with @typescript-eslint/no-unused-vars, can disable if duplicative
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		// use Node's module resolution algorithm, instead of the legacy TS one
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		// error out if import and file system have a casing mismatch. Recommended by TS
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true
+	}
+}
