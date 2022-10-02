@@ -6,6 +6,7 @@ export type JsonParseResults = {
 }
 /**
  * safe jsonParse wrapped in try catch with predictable return object
+ * @returns { data, error }
  */
 export const jsonParse = (str: string): JsonParseResults => {
 	try {
@@ -22,11 +23,8 @@ export const jsonParse = (str: string): JsonParseResults => {
  */
 export const signature = (data: any): string => {
 	if (!isObjOrArr(data)) return `${data}`;
-	let out = "", keys = Object.keys(data);
-	for (const key of keys) {
-		const val = data[key];
-		out += `${key}${signature(val)}`;
-	}
+	let out = ""; // @ts-ignore
+	for (const key in data) out += `${key}${signature(data[key])}`;
 	return out;
 };
 
@@ -38,7 +36,17 @@ export type MemoizedFn<TFunc extends (this: any, ...args: any[]) => any> = {
 /**
  * memoizes a function.
  * results are cashed, keying off of the stringified arguments.
+ * will only execute if the args change.
  * call "yourMemoizedFunction.clear()" to reset the cache
+ * @example
+ * 		const memoizedFunc = memoize((derp,asdf)=>{
+ * 		  const results = computeSomething(derp, asdf);
+ * 		  return results;
+ * 		});
+ *
+ * 		//....
+ *
+ * 		<button onClick={()=> memoizedFunc(id, 'foobar')}	...
  */
 export function memoizeArgs<TFunc extends (this: any, ...newArgs: any[]) => any>(
 	fn: TFunc
@@ -65,3 +73,17 @@ export function memoizeArgs<TFunc extends (this: any, ...newArgs: any[]) => any>
 	};
 	return memoized;
 }
+
+/**
+ * @example
+ * 	const obj = {a:1, b:2, c: 3};
+ * 	const result = pluck(obj, ['b', 'c']);
+ * 	// result -> {b:2, c:3}
+ * @param obj - object to pluck from
+ * @param arr - keys to pluck from object
+ */
+export const pluck = <T extends Record<string, any>>(obj: T, arr: string[]) =>
+	arr.reduce((acc, curr) => (
+		(acc[curr] = obj[curr]), acc
+	), {} as Record<string, any>);
+

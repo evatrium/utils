@@ -1,3 +1,4 @@
+import {PrimitiveType} from "~/types";
 
 /**
  * is typeof value string
@@ -39,7 +40,7 @@ export const isObj = (value: any): boolean =>
 /**
  * is value plain object {} or array []
  */
-export const isObjOrArr = (value: any): boolean =>
+export const isObjOrArr = (value: any): value is object | any[] =>
 	isObj(value) || Array.isArray(value);
 
 /**
@@ -61,12 +62,12 @@ export const isBool = (value: any): value is boolean => typeof value === "boolea
 /**
  * is value instanceof Map
  */
-export const isMap = (value: any): boolean => value instanceof Map;
+export const isMap = (value: any): value is Map<any,any> => value instanceof Map;
 
 /**
  * is value instance of Set
  */
-export const isSet = (value: any): boolean => value instanceof Set;
+export const isSet = (value: any): value is Set<any> => value instanceof Set;
 
 /**
  * is value a promise?
@@ -78,12 +79,11 @@ export const isPromise = (value: any): boolean => isObject(value) && isFunc(valu
  */
 export const isDateObject = (value: any): value is Date => value instanceof Date;
 
-export type Primitive = | null | undefined | string | number | boolean | symbol | bigint;
 
 /**
  * is value of primitive type
  * | null | undefined | string | number | boolean | symbol | bigint
  */
-export const isPrimitive = (value: unknown): value is Primitive =>
+export const isPrimitive = (value: unknown): value is PrimitiveType =>
 	isNullOrUndefined(value) || !isObjectType(value);
 

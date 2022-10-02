@@ -1,3 +1,8 @@
+export const isWeb = typeof window !== "undefined" &&
+	typeof window.HTMLElement !== "undefined" &&
+	typeof document !== "undefined";
+
+
 /**
  *
  * Same as document.activeElement but wraps in a try-catch block. In IE it is
@@ -12,8 +17,8 @@
  * @see https://github.com/jaredpalmer/formik/blob/master/packages/formik/src/utils.ts
  */
 export function getActiveElement(doc?: Document): Element | null {
-	doc = doc || (typeof document !== 'undefined' ? document : undefined);
-	if (typeof doc === 'undefined') {
+	doc = doc || (isWeb ? document : undefined);
+	if (typeof doc === "undefined") {
 		return null;
 	}
 	try {

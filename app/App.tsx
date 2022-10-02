@@ -3,11 +3,14 @@ import logo from "./logo.svg";
 import "./app-style.css";
 import { isObjOrArr, memoizeArgs, signature } from "../src";
 
-const memoized = memoizeArgs((num, foo, bar) => {
+const memoized = memoizeArgs((num, foo?, bar?) => {
 	const results = `results! ${num}, ${foo}, ${bar}`;
 	console.log(results);
 	return results;
 });
+
+
+
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -24,7 +27,7 @@ function App() {
 						count is: {count}
 					</button>
 
-					<button type="button" onClick={() => memoized(count, "foo", "bar")}>
+					<button type="button" onClick={() => memoized(count, "bar")}>
 						call memo
 					</button>
 
