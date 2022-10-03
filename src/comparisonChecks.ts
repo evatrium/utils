@@ -89,9 +89,8 @@ export function shallowEqual(objA: any, objB: any) {
 
 /**
  * deeply compares nested objects and nested arrays,
- * date objects and primitives
- * inspired by react hooked form utils
- * https://github.com/react-hook-form/react-hook-form/blob/master/src/utils/deepEqual.ts
+ * date objects and primitives, best suited for serializable data
+ * for more robust comparisons, use lodash
  */
 export const isEqual = (x: any, y: any): boolean => {
 	if (isPrimitive(x) || isPrimitive(y)) return x === y;
@@ -99,7 +98,7 @@ export const isEqual = (x: any, y: any): boolean => {
 	const keys1 = Object.keys(x), keys2 = Object.keys(y);
 	if (keys1.length !== keys2.length) return false;
 	for (const key of keys1) {
-		const val1 = x[key], val2 = y[key];
+		let val1 = x[key], val2 = y[key];
 		if (!keys2.includes(key)) return false;
 		if ((isDateObject(val1) && isDateObject(val2))
 		|| (isObj(val1) && isObj(val2))

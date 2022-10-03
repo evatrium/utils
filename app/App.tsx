@@ -1,14 +1,29 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import "./app-style.css";
-import { isObjOrArr, memoizeArgs, signature } from "../src";
+import { deepCopy, isObjOrArr, memoize, signature, tryCatch } from "../src";
+import { createData, createSerializableData } from "../test/_testUtils";
 
-const memoized = memoizeArgs((num, foo?, bar?) => {
+const memoized = memoize((num, foo?, bar?) => {
 	const results = `results! ${num}, ${foo}, ${bar}`;
 	console.log(results);
 	return results;
 });
+const nested = true;
+const obj = { undfnd: undefined, void: void 0 };
 
+const originalData = createData(true);
+
+const copy = deepCopy(originalData);
+
+console.log(
+	originalData,
+	"\n",
+	"\n",
+	copy
+	// typeof (void 0)
+
+);
 
 
 

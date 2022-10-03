@@ -24,10 +24,11 @@
 			]
 		},
 		"lib": [
-			"DOM",
-			"DOM.Iterable",
-			"ESNext"
-		],
+          "DOM",
+          "DOM.Iterable",
+          "ESNext",
+          "dom"
+        ],
 		"jsx": "react-jsx",
 		"baseUrl": ".",
 		"types": [

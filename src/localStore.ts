@@ -1,7 +1,9 @@
-import {jsonParse} from "~/others";
+import { jsonParse } from "~/others";
+import { isWeb, eventListener } from "~/web";
+import { debounce } from "~/timing";
 // mock
-let ls = {
-	getItem() {
+let ls: any = {
+	getItem(): any {
 	},
 	setItem() {
 	},
@@ -11,41 +13,48 @@ let ls = {
 	}
 };
 
-if (isBrowser) ls = window.localStorage;
+if (isWeb) ls = window.localStorage;
 
 
-export const CreateLocalStore = ({namespace = '', debounceSet = 500} = {}) => {
+export type LocalStoreOptions = {
+	namespace?: string,
+	debounceTime?: number
+};
 
-	const localStoreSetItem = (key, val) => ls.setItem(namespace + (key || ''), JSON.stringify(val));
-	const setItemDebounced = debounce(localStoreSetItem, debounceSet);
+
+export const CreateLocalStore = ({ namespace = "", debounceTime = 0 }: LocalStoreOptions = {}) => {
+
+	const localStoreSetItem = (key: string, val?: any) => ls.setItem(namespace + (key || ""), JSON.stringify(val));
+
+	const setItemDebounced = debounce(localStoreSetItem, debounceTime);
 
 	return {
 		clear: () => ls.clear(),
-		removeItem: key => ls.removeItem(namespace + (key || '')),
+		removeItem: (key: string) => ls.removeItem(namespace + (key || "")),
 		setItem: localStoreSetItem,
 		setItemDebounced,
-		subscribe: callback => eventListener(window, 'storage', callback),
-		subscribeToKey: (key, callback) => {
-			return eventListener(window, 'storage', (e) => {
-				if (e.storageArea === localStorage && e.key === key) {
-					const {data} = jsonParse(e.newValue);
+		subscribe: (callback: Function) => eventListener(window, "storage", callback as EventListener),
+		subscribeToKey: (key: string = "", callback: Function) => {
+			return eventListener(window, "storage", (e: StorageEventInit) => {
+				if (e.storageArea === ls && e.key === key) {
+					const { data } = jsonParse(e.newValue as string);
 					callback(data || null);
 				}
-			})
+			});
 		},
-		subscribeToNameSpace: callback => {
-			return eventListener(window, 'storage', (e) => {
-				if (e.storageArea === localStorage && e.key.startsWith(namespace)) {
-					const {data} = jsonParse(e.newValue);
+		subscribeToNameSpace: (callback: Function) => {
+			return eventListener(window, "storage", (e: StorageEventInit) => {
+				if (e.storageArea === ls && e?.key?.startsWith(namespace)) {
+					const { data } = jsonParse(e.newValue as string);
 					callback(data || null);
 				}
-			})
+			});
 		},
-		getItem: key => {
-			let item = ls.getItem(namespace + (key || ''));
-			if (!item || item === 'undefined') return null;
-			const {data} = jsonParse(item);
+		getItem: (key?: string) => {
+			let item = ls.getItem(namespace + (key || ""));
+			if (!item || item === "undefined") return null;
+			const { data } = jsonParse(item);
 			return data || null;
 		}
-	}
-}
+	};
+};

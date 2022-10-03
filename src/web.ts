@@ -4,6 +4,24 @@ export const isWeb = typeof window !== "undefined" &&
 
 
 /**
+ * @param emitter - element (ex:window)
+ * @param event - ex: "scroll"
+ * @param callback
+ * @param options
+ * @returns function to unsubscribe
+ */
+export const eventListener = (
+	emitter: Window,
+	event: keyof WindowEventMap | keyof DocumentEventMap,
+	callback: EventListener ,
+	options?: object
+): Function => {
+	emitter.addEventListener(event, callback, options);
+	return () => emitter.removeEventListener(event, callback, options);
+};
+
+
+/**
  *
  * Same as document.activeElement but wraps in a try-catch block. In IE it is
  * not safe to call document.activeElement if there is nothing focused.

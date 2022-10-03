@@ -6,12 +6,12 @@ import { ObjOrArrType } from "~/types";
  * Ideal for state trees and json like objects, aka serializable data
  * For more robust features, use fast-copy - @see https://github.com/planttheidea/fast-copy
  */
-export const simpleDeepCopy = <T>(data: T, _extra?: boolean): T => {
-	const copier = _extra ? deepCopy : simpleDeepCopy;
+export const simpleDeepCopy = <T>(data: T, _?: boolean): T => {
+	const copier = _ === true /*which deep copy to use*/ ? deepCopy : simpleDeepCopy;
 	const isArr = Array.isArray(data);
 	if (isArr || isObj(data)) {
 		let copy: any = isArr ? [] : {};
-		for (const key in data) copy[key] = copier(data[key], _extra);
+		for (const key in data) copy[key] = copier(data[key], _);
 		return copy;
 	}
 	return data;
@@ -43,14 +43,8 @@ export const assign = (target: ObjOrArrType, source: ObjOrArrType) => {
 	return target;
 };
 /**
- * creates a container for copying an array or object
- * @param val
- */
-export const emptyTarget = (val: ObjOrArrType) => Array.isArray(val) ? [] : {};
-
-/**
  * makes a shallow copy of array or object.
  * equivalent to [...arr] or {...obj} but probs faster than native
  * @param objOrArr
  */
-export const shallowCopy = (objOrArr: ObjOrArrType) => assign(emptyTarget(objOrArr), objOrArr);
+export const shallowCopy = (objOrArr: ObjOrArrType) => assign(Array.isArray(objOrArr) ? [] : {}, objOrArr);
