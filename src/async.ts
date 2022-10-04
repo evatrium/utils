@@ -5,7 +5,10 @@ export type TryCatchFunc<TFunc extends (this: any, ...args: any[]) => Promise<an
 /**
  * wraps an async function in try catch
  * @param asyncFunc
- * @returns {data: the results from the async func, error: the cought }
+ * @returns {
+ * 		data: the results from the async func,
+ * 		error: the caught error
+ *	}
  */
 export function tryCatch<TFunc extends (this: any, ...newArgs: any[]) => any>(
 	asyncFunc: TFunc

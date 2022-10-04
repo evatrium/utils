@@ -1,6 +1,6 @@
 {
 	"include": [
-		//		"app",
+		"app",
 		"./src"
 	],
 	"references": [
@@ -24,11 +24,11 @@
 			]
 		},
 		"lib": [
-          "DOM",
-          "DOM.Iterable",
-          "ESNext",
-          "dom"
-        ],
+			"DOM",
+			"DOM.Iterable",
+			"ESNext",
+			"dom"
+		],
 		"jsx": "react-jsx",
 		"baseUrl": ".",
 		"types": [

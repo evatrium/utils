@@ -11,7 +11,10 @@ export const simpleDeepCopy = <T>(data: T, _?: boolean): T => {
 	const isArr = Array.isArray(data);
 	if (isArr || isObj(data)) {
 		let copy: any = isArr ? [] : {};
-		for (const key in data) copy[key] = copier(data[key], _);
+		for (const key in data) {
+			if (key === "__proto__") continue;
+			copy[key] = copier(data[key], _);
+		}
 		return copy;
 	}
 	return data;
@@ -39,7 +42,12 @@ export const deepCopy = <T>(data: T): any => {
  * @returns original target
  */
 export const assign = (target: ObjOrArrType, source: ObjOrArrType) => {
-	for (let i in source) target[i] = source[i];
+	for (let key in source) {
+		if (key === "__proto__") {
+			continue;
+		}
+		target[key] = source[key];
+	}
 	return target;
 };
 /**

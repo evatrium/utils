@@ -11,7 +11,7 @@ export const isWeb = typeof window !== "undefined" &&
  * @returns function to unsubscribe
  */
 export const eventListener = (
-	emitter: Window,
+	emitter: Window | HTMLElement,
 	event: keyof WindowEventMap | keyof DocumentEventMap,
 	callback: EventListener ,
 	options?: object

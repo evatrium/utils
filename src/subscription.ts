@@ -1,7 +1,12 @@
+
 type UnSubscribeFunc = (subscription: Function) => void;
+
 type ReturnedUnsubscriber = () => UnSubscribeFunc;
+
 type SubscribeFunc = (subscriber: Function) => ReturnedUnsubscriber;
+
 type PublishFunc = (...update: any[]) => void;
+
 type CreateSubscription = () => [SubscribeFunc, PublishFunc, UnSubscribeFunc];
 
 export const createSubscription: CreateSubscription = () => {

@@ -1,31 +1,37 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import "./app-style.css";
-import { deepCopy, isObjOrArr, memoize, signature, tryCatch } from "../src";
-import { createData, createSerializableData } from "../test/_testUtils";
+import { deepCopy, isObjOrArr, isWeb, memoize, signature, tryCatch } from "../src";
+import { createLocalStore } from "../src";
+import { deepMerge } from "~/deepMerge";
+import { createSerializableData, createData } from "../test/_testUtils";
+
+const target = createData(true);
+
+const source = createSerializableData(true);
+
+const result = deepMerge(target, source, { clone: true, arrayMerge: "byIndex" });
+
+console.log(target);
+console.log(source);
+console.log(result);
+
+const localStore = createLocalStore({
+	debounceTime: 100
+});
+
+let num = localStore.getItem("num") || 0;
+localStore.subscribeToKey("num", (data) => {
+	console.log("storage update on other tab", data);
+	num = data;
+});
+
 
 const memoized = memoize((num, foo?, bar?) => {
 	const results = `results! ${num}, ${foo}, ${bar}`;
 	console.log(results);
 	return results;
 });
-const nested = true;
-const obj = { undfnd: undefined, void: void 0 };
-
-const originalData = createData(true);
-
-const copy = deepCopy(originalData);
-
-console.log(
-	originalData,
-	"\n",
-	"\n",
-	copy
-	// typeof (void 0)
-
-);
-
-
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -49,6 +55,11 @@ function App() {
 					<button type="button" onClick={() => memoized.clear()}>
 						clear cache
 					</button>
+
+					<button type="button" onClick={() => localStore.setItemDebounced("num", (num + 1))}>
+						inc local store
+					</button>
+
 				</p>
 			</header>
 		</div>
