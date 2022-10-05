@@ -4,7 +4,7 @@
 
 ### (Work in Progress)
 
-Currently refactoring my old repo (iosio/utils) into TypeScript and writing tests.
+Currently refactoring my old js utilities into TypeScript and writing tests.
 
 
 [//]: # (#### Installation)
