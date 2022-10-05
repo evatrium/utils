@@ -1,38 +1,23 @@
-[typescript tutorial](https://type-level-typescript.com/)
+# @evatrium/utils
 
-Look into Vitest for testing:
-[vitest](https://github.com/vitest-dev/vitest)
+> Typescript utilities.
 
-Boilerplates referenced:
+### (Work in Progress)
 
-[boilerplate-lib-vite-react](https://github.com/panhavsilva/boilerplate-lib-vite-react)
+Currently refactoring my old repo (iosio/utils) into TypeScript and writing tests.
 
-[vite-vanilla-ts-lib-starter](https://github.com/kbysiec/vite-vanilla-ts-lib-starter)
 
-[vite-react-ts](https://github.com/uchihamalolan/vite-react-ts)
+[//]: # (#### Installation)
 
-[more boilderplates](https://github.com/vitejs/awesome-vite#templates)
+[//]: # (```)
 
-other prittier reference
+[//]: # (npm install @evatrium/utils)
 
-```json
-{
-	"printWidth": 100,
-	"tabWidth": 2,
-	"useTabs": true,
-	"semi": true,
-	"singleQuote": true,
-	"quoteProps": "as-needed",
-	"jsxSingleQuote": false,
-	"trailingComma": "none",
-	"bracketSpacing": true,
-	"bracketSameLine": false,
-	"arrowParens": "always",
-	"requirePragma": false,
-	"insertPragma": false,
-	"proseWrap": "preserve",
-	"htmlWhitespaceSensitivity": "css",
-	"endOfLine": "lf",
-	"embeddedLanguageFormatting": "auto"
-}
-```
+[//]: # (```)
+
+[//]: # (### Usage)
+
+
+[//]: # (### License)
+
+[//]: # ([MIT]: https://choosealicense.com/licenses/mit/)

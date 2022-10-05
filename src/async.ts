@@ -1,5 +1,8 @@
-export type TryCatchFunc<TFunc extends (this: any, ...args: any[]) => Promise<any>> = {
-	(this: ThisParameterType<TFunc>, ...args: Parameters<TFunc>): Promise<{ data: any, error: Error }>;
+export type AsyncFunc = (this: any, ...newArgs: any[]) => Promise<any>;
+
+export type TryCatchFunc<TFunc extends AsyncFunc> = {
+	(this: ThisParameterType<TFunc>, ...args: Parameters<TFunc>):
+		Promise<{ data: any, error: Error }>;
 };
 
 /**
@@ -10,9 +13,7 @@ export type TryCatchFunc<TFunc extends (this: any, ...args: any[]) => Promise<an
  * 		error: the caught error
  *	}
  */
-export function tryCatch<TFunc extends (this: any, ...newArgs: any[]) => any>(
-	asyncFunc: TFunc
-): TryCatchFunc<TFunc> {
+export function tryCatch<TFunc extends AsyncFunc>(asyncFunc: TFunc): TryCatchFunc<TFunc> {
 
 	async function tryCatchPromise(
 		this: ThisParameterType<TFunc>,

@@ -7,7 +7,11 @@ type Options = {
 	arrayMerge?: "overwrite" | "concat" | "byIndex" | typeof deepMerge
 }
 
-type DeepMerge = (target: ObjOrArrType, source: ObjOrArrType, options?: Options) => ObjOrArrType;
+type DeepMerge = (
+	target: ObjOrArrType,
+	source: ObjOrArrType,
+	options?: Options
+) => ObjOrArrType;
 
 export const deepMerge: DeepMerge = (
 	target,
