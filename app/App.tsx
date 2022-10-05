@@ -3,18 +3,7 @@ import logo from "./logo.svg";
 import "./app-style.css";
 import { deepCopy, isObjOrArr, isWeb, memoize, signature, tryCatch } from "../src";
 import { createLocalStore } from "../src";
-import { deepMerge } from "~/deepMerge";
-import { createSerializableData, createData } from "../test/_testUtils";
 
-const target = createData(true);
-
-const source = createSerializableData(true);
-
-const result = deepMerge(target, source, { clone: true, arrayMerge: "byIndex" });
-
-console.log(target);
-console.log(source);
-console.log(result);
 
 const localStore = createLocalStore({
 	debounceTime: 100

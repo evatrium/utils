@@ -7,7 +7,7 @@ describe("deepmerge", () => {
 
 
 	it("should not be subject to prototype pollution", () => {
-		deepMerge({}, JSON.parse("{ \"myProperty\": \"a\", \"__proto__\" : { \"isAdmin\" : true } }"), {
+		deepMerge({}, JSON.parse(`{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }`), {
 			clone: false
 		});
 		// removing "if (key === "__proto__") continue;" from the "for in" loop

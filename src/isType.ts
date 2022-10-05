@@ -3,12 +3,12 @@ import { PrimitiveType } from "~/types";
 /**
  * is typeof value string
  */
-export const isString = (value: unknown): value is string => typeof value === "string";
+export const isString = (value: any): value is string => typeof value === "string";
 
 /**
  * is value instance of RegExp
  */
-export const isRegexp = (value: unknown): value is RegExp => value instanceof RegExp;
+export const isRegexp = (value: any): value is RegExp => value instanceof RegExp;
 
 /**
  * is value typeof value object
@@ -54,6 +54,7 @@ export const isFunc = (value: any): boolean => typeof value === "function";
 export const isNum = (value: any): boolean =>
 	typeof value === "number" && !isNaN(value - 0) && isFinite(value);
 
+
 /**
  *	is value boolean
  */
@@ -84,6 +85,6 @@ export const isDateObject = (value: any): value is Date => value instanceof Date
  * is value of primitive type
  * | null | undefined | string | number | boolean | symbol | bigint
  */
-export const isPrimitive = (value: unknown): value is PrimitiveType =>
+export const isPrimitive = (value: any): value is PrimitiveType =>
 	isNullOrUndefined(value) || !isObjectType(value);
 

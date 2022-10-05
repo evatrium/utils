@@ -50,6 +50,7 @@ export const assign = (target: ObjOrArrType, source: ObjOrArrType) => {
 	}
 	return target;
 };
+
 /**
  * makes a shallow copy of array or object.
  * equivalent to [...arr] or {...obj} but probs faster than native
