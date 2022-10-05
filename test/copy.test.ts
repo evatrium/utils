@@ -49,6 +49,8 @@ describe("simpleDeepCopy", () => {
 });
 
 describe("deepCopy", () => {
+
+
 	it("should make a copy of nested data. Original should not be equal to copy", () => {
 		const originalData = createData(true);
 

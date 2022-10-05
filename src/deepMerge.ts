@@ -1,32 +1,48 @@
-import { isObj } from "~/isType";
-import { shallowCopy } from "~/copy";
+import { isFunc, isObj } from "~/isType";
+import { assign } from "~/copy";
 import { ObjOrArrType } from "~/types";
 
-type Options = { clone?: boolean, arrayMerge?: "overwrite" | "concat" | "byIndex" }
+type Options = {
+	clone?: boolean,
+	arrayMerge?: "overwrite" | "concat" | "byIndex" | typeof deepMerge
+}
 
-export const deepMerge = (target: ObjOrArrType, source: ObjOrArrType, options: Options): ObjOrArrType => {
+type DeepMerge = (target: ObjOrArrType, source: ObjOrArrType, options?: Options) => ObjOrArrType;
 
-	const { clone = true, arrayMerge = "overwrite" } = options || ({} as Options);
+export const deepMerge: DeepMerge = (
+	target,
+	source,
+	options = { clone: true, arrayMerge: "overwrite" }
+): ObjOrArrType => {
 
-	const tArr = Array.isArray(target), sArr = Array.isArray(source),
-		tObj = isObj(target), sObj = isObj(source),
-		bothArr = tArr && sArr, bothObj = tObj && sObj;
+	const tArr = Array.isArray(target),
+		sArr = Array.isArray(source),
+		tObj = isObj(target),
+		sObj = isObj(source),
+		bothArr = tArr && sArr,
+		bothObj = tObj && sObj;
 
 	if (!(bothArr || bothObj)) return source;
 
 	let out = target;
 
-	if (clone) out = shallowCopy(target);
+	if (options.clone) out = assign(tArr ? [] : {}, target);
 
-	if (bothObj || arrayMerge === "byIndex") {
+	if (bothArr && isFunc(options.arrayMerge)) { // @ts-ignore
+		return options.arrayMerge(out, source, options);
+	}
+
+	if (bothObj || options.arrayMerge === "byIndex") {
 		for (let key in source) {
-			if (key === "__proto__") continue;
-			out[key] = deepMerge(out[key], source[key], { clone, arrayMerge });
+			if (key === "__proto__") {
+				continue;
+			}
+			out[key] = deepMerge(target[key], source[key], options);
 		}
 		return out;
 	}
 
-	if (arrayMerge === "concat") return (out.concat(source));
+	if (options.arrayMerge === "concat") return (out.concat(source));
 
 	return source;
 

@@ -1,6 +1,7 @@
 export * from "./async";
 export * from "./comparisonChecks";
 export * from "./copy";
+export * from "./deepMerge";
 export * from "./isType";
 export * from "./localStore";
 export * from "./memoize";

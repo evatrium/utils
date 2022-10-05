@@ -1,4 +1,4 @@
-import {PrimitiveType} from "~/types";
+import { PrimitiveType } from "~/types";
 
 /**
  * is typeof value string
@@ -62,7 +62,7 @@ export const isBool = (value: any): value is boolean => typeof value === "boolea
 /**
  * is value instanceof Map
  */
-export const isMap = (value: any): value is Map<any,any> => value instanceof Map;
+export const isMap = (value: any): value is Map<any, any> => value instanceof Map;
 
 /**
  * is value instance of Set

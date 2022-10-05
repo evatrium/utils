@@ -1,3 +1,25 @@
+import { deepMerge } from "../src";
+
+export const createProfile = () => ({
+	id: 2,
+	name: { fist: "Dolores", last: "Abernathy" },
+	is_robot: true,
+	permissions: {
+		is_owner: false
+	},
+	favorite_movies: ["ex machina"],
+	team: {
+		owners: [
+			{ id: 1, name: { first: "Robert", last: "Ford" } },
+			{ id: 3, name: { first: "Bernard", last: "Lowe" } }
+		],
+		members: [
+			{ id: 4, name: { first: "Teddy", last: "Flood" } }
+		]
+	}
+});
+
+
 class Classy {
 	constructor(public foo: string) {
 	}
@@ -94,3 +116,11 @@ export const serializableDataNestedResult = {
 		}
 	}
 };
+
+
+export const testCustomArrayMerge_updateById = (target, source) =>
+	target.map((existing: Record<string, any>, index: string) => {
+		const update = source.find((it: Record<string, any>) => it.id === existing.id);
+		if (update) return deepMerge(existing, update);
+		return existing;
+	})
