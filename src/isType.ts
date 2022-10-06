@@ -49,12 +49,15 @@ export const isObjOrArr = (value: any): value is object | any[] =>
 export const isFunc = (value: any): boolean => typeof value === "function";
 
 /**
- * is value a number, not NaN, and finite
+ * is value a number, not NaN, and is finite
  */
 export const isNum = (value: any): boolean =>
 	typeof value === "number" && !isNaN(value - 0) && isFinite(value);
 
-
+/**
+ * is value a big integer type
+ */
+export const isBigInt = (value: any): value is BigInt => typeof value === "bigint";
 /**
  *	is value boolean
  */

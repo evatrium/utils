@@ -4,6 +4,10 @@ import "./app-style.css";
 import { deepCopy, isObjOrArr, isWeb, memoize, signature, tryCatch } from "../src";
 import { createLocalStore } from "../src";
 
+// const bigint = BigInt(123);
+// console.log(bigint === 123n);
+// console.log(Number(bigint));
+// console.log(JSON.stringify({ bigint }));
 
 const localStore = createLocalStore({
 	debounceTime: 100

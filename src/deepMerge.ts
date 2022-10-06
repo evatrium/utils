@@ -2,6 +2,7 @@ import { isFunc, isObj } from "~/isType";
 import { assign } from "~/copy";
 import { ObjOrArrType } from "~/types";
 
+
 type Options = {
 	clone?: boolean,
 	arrayMerge?: "overwrite" | "concat" | "byIndex" | typeof deepMerge
@@ -13,6 +14,18 @@ type DeepMerge = (
 	options?: Options
 ) => ObjOrArrType;
 
+/**
+ * Deep merge two nested objects or arrays
+ * @param target
+ * @param source
+ * @param options = {
+ *   clone?: boolean = true,
+ *   arrayMerge?: string|function = "overwrite" //
+ * }
+ * clone: if true, will assign items of object/array to new object/array
+ * arrayMerge: one of union types ("overwrite" | "concat" | "byIndex" | typeof deepMerge)
+ * 		see tests for examples that illustrate the differences
+ */
 export const deepMerge: DeepMerge = (
 	target,
 	source,
