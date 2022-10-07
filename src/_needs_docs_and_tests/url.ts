@@ -1,4 +1,4 @@
-import { isWeb } from "~/web";
+import { isWeb } from "~/_needs_docs_and_tests/web";
 import {isObj} from "~/isType";
 import {isEmpty} from "~/comparisonChecks";
 

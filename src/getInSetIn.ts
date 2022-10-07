@@ -7,7 +7,7 @@ import { ObjOrArrType } from "~/types";
 const toPath = (path: string) => path.match(/([^[.\]])+/g) || [];
 
 /**
- * Deeply get a value from an object or array via its path.
+ * Dot walk to deeply get a value from a nested object or array 'via.its.path'.
  * @example
  * 	const obj = {a:{b:{c:["foobar"]}}}
  * 	const value = getIn(obj, 'a.b.c[0]', 'fallback');

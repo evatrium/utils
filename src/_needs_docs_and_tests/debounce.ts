@@ -1,4 +1,4 @@
-export const wait = (time: number = 0) => new Promise(r => setTimeout(r, time));
+
 
 export type DebouncedFunc<TFunc extends (this: any, ...args: any[]) => any> = {
 	cancel: () => void;

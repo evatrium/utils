@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { createSubscription } from "../src/subscription";
+import { createSubscription } from "~/_needs_docs/subscription";
 
 describe("createSubscription", () => {
 

@@ -35,24 +35,29 @@ export const deepCopy = <T>(data: T): any => {
 	else if (isSet(data)) return new Set(data);
 	else if (isMap(data)) return new Map(data);
 	return simpleDeepCopy(data, deepCopy);
+
 };
 
+type AssignType = <T1 extends ObjOrArrType, T2 extends ObjOrArrType> (
+	target: T1,
+	source: T2
+) => T1;
 /**
  *
  * assigns source to target
  * probably faster than native object assign
  * @param target [] | {}
  * @param source [] | {}
- * @returns original target
+ * @returns original target with updated data
  */
-export const assign = (target: ObjOrArrType, source: ObjOrArrType) => {
+export const assign: AssignType = (target, source) => {
 	for (let key in source) {
 		if (key === "__proto__") {
 			continue;
 		}
 		target[key] = source[key];
 	}
-	return target;
+	return target
 };
 
 /**

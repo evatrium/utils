@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
+import {wait} from "~/_needs_docs_and_tests/wait";
 
-
-import { createLocalStore, wait } from "../src";
+import { createLocalStore } from "lib";
 
 describe("createLocalStore", () => {
 

@@ -1,6 +1,6 @@
 import { jsonParse } from "~/misc";
-import { isWeb, eventListener } from "~/web";
-import { debounce } from "~/timing";
+import { isWeb, eventListener } from "~/_needs_docs_and_tests/web";
+import { debounce } from "~/_needs_docs_and_tests/debounce";
 
 export type LocalStoreOptions = {
 	debounceTime?: number

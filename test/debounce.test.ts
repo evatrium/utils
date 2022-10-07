@@ -1,4 +1,5 @@
-import { debounce, wait } from "../src/timing";
+import { debounce } from "~/_needs_docs_and_tests/debounce";
+import {wait} from "~/_needs_docs_and_tests/wait";
 import { describe, expect, it, vi } from "vitest";
 
 

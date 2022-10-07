@@ -1,6 +1,6 @@
 import { isObj, isObjOrArr } from "~/isType";
 import { isEmpty } from "~/comparisonChecks";
-import {stringifyParams} from "~/url";
+import {stringifyParams} from "~/_needs_docs_and_tests/url";
 
 export const endpoint = (strings:string[], interpolations:any[]) =>
 	strings.reduce((out, string, i) => {
