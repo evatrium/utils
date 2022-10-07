@@ -1,4 +1,4 @@
-export * from "./async";
+export * from "./tryCatch";
 export * from "./comparisonChecks";
 export * from "./copy";
 export * from "./deepMerge";
@@ -7,6 +7,7 @@ export * from "./isType";
 export * from "./localStore";
 export * from "./memoize";
 export * from "./misc";
+export * from "./objArr";
 export * from "./string";
 export * from "./web";
 export * from "./url";

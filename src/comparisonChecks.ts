@@ -32,8 +32,8 @@ export const hasKeys = (objOrFunc: object | Function): boolean => {
 };
 
 /**
- * Checks if a data structure (@param value) is empty: [], {}, Map, Set
- * and a function has no keys
+ * Checks if a data structure is empty: [], {}, Map, Set
+ * and if a function is passed, checks if it has keys
  * returns true if any other given value is falsy
  */
 export const isEmpty = (value: any): boolean => {
@@ -55,7 +55,8 @@ export const fixedPropsChanged = (prev: Record<string, any>, next: Record<string
 
 /**
  * similar to shallow equal but for objects only
- * checks if number of keys are the same and if values are "==="
+ * checks if number of keys are the same
+ * and compares each key value pair for equality "==="
  */
 export const propsChanged = (prev: Record<string, any>, next: Record<string, any>): boolean => {
 	for (let i in prev) if (!(i in next)) return true;
@@ -104,9 +105,13 @@ export const includesAll = (
 /**
  * checks if 2 arrays contain same items in the same order
  */
-export const isEqualArray = (arr1: any[], arr2: any[]): boolean => {
+export const isEqualArray = (
+	arr1: any[],
+	arr2: any[],
+	isEqual = (arr1Item: any, arr2Item: any) => arr1Item === arr2Item
+): boolean => {
 	let length = arr1.length;
 	if (length !== arr2.length) return false;
-	for (let i = 0; i < length; i++) if (arr1[i] !== arr2[i]) return false;
+	for (let i = 0; i < length; i++) if (!isEqual(arr1[i], arr2[i])) return false;
 	return true;
 };

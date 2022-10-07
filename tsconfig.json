@@ -1,7 +1,8 @@
 {
 	"include": [
 //		"app",
-		"./src"
+		"./src",
+		"./test"
 	],
 	"references": [
 		{

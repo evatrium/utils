@@ -46,7 +46,7 @@ export const isObjOrArr = (value: any): value is object | any[] =>
 /**
  * is value a function
  */
-export const isFunc = (value: any): boolean => typeof value === "function";
+export const isFunc = (value: any): value is Function => typeof value === "function";
 
 /**
  * is value a number, not NaN, and is finite
