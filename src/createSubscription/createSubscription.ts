@@ -6,7 +6,13 @@ type SubscribeFunc = (subscriber: Function) => ReturnedUnsubscriber;
 
 type PublishFunc = (...update: any[]) => void;
 
-type CreateSubscription = () => [SubscribeFunc, PublishFunc, UnSubscribeFunc];
+export type SubscriptionInstance = {
+	sub: SubscribeFunc,
+	pub: PublishFunc,
+	unsub: UnSubscribeFunc
+}
+
+type CreateSubscription = () => SubscriptionInstance;
 
 /**
  * creates a subscription (pub/sub) for publishing data to listeners
@@ -41,5 +47,9 @@ export const createSubscription: CreateSubscription = () => {
 		subs.slice().map(f => f(...update));
 	};
 
-	return [sub, pub, unsub];
+	return {
+		sub,
+		pub,
+		unsub
+	};
 };

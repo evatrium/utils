@@ -3,7 +3,7 @@ import { createSubscription } from "~/createSubscription";
 
 describe("createSubscription", () => {
 	it("subscribes listeners, publishes data, and unsubscribes", async () => {
-		const [sub, pub] = createSubscription();
+		const { sub, pub } = createSubscription();
 
 		const spyOnMe = {
 			listener: () => void 0

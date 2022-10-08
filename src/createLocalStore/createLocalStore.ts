@@ -2,10 +2,13 @@ import { jsonParse } from "~/jsonParse";
 import { isWeb } from "~/isWeb";
 import { eventListener } from "~/eventListener";
 import { debounce } from "~/debounce";
+import { createSubscription, SubscriptionInstance } from "../createSubscription";
 
 export type LocalStoreOptions = {
 	debounceTime?: number;
 };
+
+
 
 /**
  * Local Storage wrapper.
@@ -31,9 +34,7 @@ export type LocalStoreOptions = {
  * localStore.setItemDebounced("num", (num + 1))
  *
  */
-export const createLocalStore = ({
-	debounceTime = 0
-}: LocalStoreOptions = {}) => {
+export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) => {
 	/**
 	 * JSON.stringifies the value before setting it to local storage.
 	 * @param key
@@ -77,9 +78,12 @@ export const createLocalStore = ({
 	 * @param callback
 	 */
 	const subscribe = (callback: Function) => {
-		return !isWeb
-			? () => void 0
-			: eventListener(window, "storage", callback as EventListener);
+		if (!_storageEventSubscription) {
+			_storageEventSubscription = createSubscription();
+			// this lets us use only one storage event listener and publish to all subscribers
+			isWeb && eventListener(window, "storage", _storageEventSubscription.pub);
+		}
+		return _storageEventSubscription.sub(callback); // returns unsub
 	};
 
 	/**
@@ -107,6 +111,8 @@ export const createLocalStore = ({
 		subscribeToKey
 	};
 };
+
+let _storageEventSubscription: SubscriptionInstance;
 
 // mock
 let ls: any = {

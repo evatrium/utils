@@ -29,27 +29,63 @@ export type MemoizedFn<TFunc extends (this: any, ...args: any[]) => any> = {
 export function memoize<TFunc extends (this: any, ...newArgs: any[]) => any>(
 	fn: TFunc
 ): MemoizedFn<TFunc> {
+
+
+	const cache:MemoizedCache = Object.create(null);
+
 	function memoized(
 		this: ThisParameterType<TFunc>,
 		...newArgs: Parameters<TFunc>
 	): ReturnType<TFunc> | any {
-		const keyLookup = signature(newArgs);
 
-		if (memoized.cache[keyLookup]) {
-			// console.log("cache me outside how bout dat");
-			return memoized.cache[keyLookup];
+		const keyLookup = signature(newArgs);
+		let val = memoized.cache[keyLookup];
+		if (val === undefined){
+			val = memoized.cache[keyLookup] = fn.apply(this, newArgs);
 		}
-		const result = fn.apply(this, newArgs);
-		// @ts-ignore
-		memoized.cache[keyLookup] = result;
-		return result;
+		return val;
 	}
 
-	memoized.cache = {};
+	memoized.cache = cache;
 
 	memoized.clear = () => {
-		memoized.cache = {};
+		memoized.cache = Object.create(null);
 	};
 
 	return memoized;
 }
+
+
+/*
+
+	WeakMaps don't detect mutations, they just track references to objects
+
+	const args:any[] = [
+		{ foo: "bar" },
+		{
+			baz: [
+				"bing",
+				"bang",
+				"boom"
+			]
+		}
+	];
+
+	const func = (...args: any[]) => {
+		return [...args, "buz"];
+	};
+
+	const cache = new WeakMap();
+
+	const ret = func(...args);
+
+	cache.set(args, ret);
+
+	args.push('foo')
+	const gotIt = cache.get(args);
+	console.log(gotIt);
+	console.log(args);
+	console.log(gotIt === ret);
+
+
+ */

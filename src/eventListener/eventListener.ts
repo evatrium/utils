@@ -12,5 +12,7 @@ export const eventListener = (
 	options?: object
 ): Function => {
 	emitter.addEventListener(event, callback, options);
-	return () => emitter.removeEventListener(event, callback, options);
+	return () => {
+		emitter.removeEventListener(event, callback, options);
+	};
 };

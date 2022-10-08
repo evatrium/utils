@@ -11,20 +11,33 @@ import {
 	createLocalStore
 } from "../src";
 
-// const bigint = BigInt(123);
-// console.log(bigint === 123n);
-// console.log(Number(bigint));
-// console.log(JSON.stringify({ bigint }));
+const args:any[] = [
+	{ foo: "bar" },
+	{
+		baz: [
+			"bing",
+			"bang",
+			"boom"
+		]
+	}
+];
 
-const localStore = createLocalStore({
-	debounceTime: 100
-});
+const func = (...args: any[]) => {
+	return [...args, "buz"];
+};
 
-let num = localStore.getItem("num") || 0;
-localStore.subscribeToKey("num", data => {
-	console.log("storage update on other tab", data);
-	num = data;
-});
+const cache = new WeakMap();
+
+const ret = func(...args);
+
+cache.set(args, ret);
+
+args.push('foo')
+const gotIt = cache.get(args);
+console.log(gotIt);
+console.log(args);
+console.log(gotIt === ret);
+
 
 const memoized = memoize((num, foo?, bar?) => {
 	const results = `results! ${num}, ${foo}, ${bar}`;
@@ -39,28 +52,22 @@ function App() {
 		setCount(count => count + 1);
 	};
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
+		<div className="App">
+			<header className="App-header">
+				<img src={logo} className="App-logo" alt="logo" />
 				<p>
-					<button type='button' onClick={clicky}>
+					<button type="button" onClick={clicky}>
 						count is: {count}
 					</button>
 
-					<button type='button' onClick={() => memoized(count, "bar")}>
+					<button type="button" onClick={() => memoized(count, "bar")}>
 						call memo
 					</button>
 
-					<button type='button' onClick={() => memoized.clear()}>
+					<button type="button" onClick={() => memoized.clear()}>
 						clear cache
 					</button>
 
-					<button
-						type='button'
-						onClick={() => localStore.setItemDebounced("num", num + 1)}
-					>
-						inc local store
-					</button>
 				</p>
 			</header>
 		</div>
