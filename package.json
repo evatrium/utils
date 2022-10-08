@@ -84,7 +84,7 @@
 		"vite-plugin-dts": "0.9.10",
 		"vite-plugin-linter": "0.2.4",
 		"vite-tsconfig-paths": "3.4.1",
-		"vitest": "^0.23.4"
+		"vitest": "^0.24.0"
 	},
 	"dependencies": {
 		"plop": "^3.1.1"
