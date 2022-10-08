@@ -1,6 +1,6 @@
 import { PrimitiveType } from "~/types";
-import {isNullOrUndefined} from "~/isNullOrUndefined";
-import {isObjectType} from "~/isObjectType";
+import { isNullOrUndefined } from "~/isNullOrUndefined";
+import { isObjectType } from "~/isObjectType";
 
 /**
  * is value of primitive type
@@ -8,4 +8,3 @@ import {isObjectType} from "~/isObjectType";
  */
 export const isPrimitive = (value: any): value is PrimitiveType =>
 	isNullOrUndefined(value) || !isObjectType(value);
-

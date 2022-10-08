@@ -1,4 +1,4 @@
-import {isObjOrArr} from "~/isObjOrArr";
+import { isObjOrArr } from "~/isObjOrArr";
 
 /**
  * nonstandard stringify

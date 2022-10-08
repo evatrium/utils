@@ -1,1 +1,1 @@
-export * from './isNum'
+export * from "./isNum";

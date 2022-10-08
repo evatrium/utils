@@ -1,11 +1,9 @@
 import { debounce } from "~/debounce";
-import {wait} from "~/wait";
+import { wait } from "~/wait";
 import { describe, expect, it, vi } from "vitest";
-
 
 describe("debounce", () => {
 	it("debounces multiple sequential calls", async () => {
-
 		const spyOnMe = {
 			func: () => void 0
 		};
@@ -23,7 +21,6 @@ describe("debounce", () => {
 	});
 
 	it("debounce is cancelable", async () => {
-
 		const spyOnMe = {
 			func: () => void 0
 		};
@@ -40,5 +37,4 @@ describe("debounce", () => {
 
 		expect(funcSpy).toBeCalledTimes(0);
 	});
-
 });

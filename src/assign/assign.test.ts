@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { assign } from '~/assign';
+import { assign } from "~/assign";
 
 describe("assign", () => {
 	it("should assign source to target and maintain the same reference", () => {

@@ -1,9 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isEmpty } from '~/isEmpty';
-
+import { isEmpty } from "~/isEmpty";
 
 describe("isEmpty", () => {
-
 	it("should return true when a data structure is empty or function has no keys", () => {
 		expect(isEmpty({})).toBeTruthy();
 		expect(isEmpty([])).toBeTruthy();
@@ -37,5 +35,4 @@ describe("isEmpty", () => {
 		expect(isEmpty("false")).toBeFalsy();
 		expect(isEmpty(true)).toBeFalsy();
 	});
-
 });

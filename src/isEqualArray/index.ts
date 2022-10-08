@@ -1,1 +1,1 @@
-export * from './isEqualArray'
+export * from "./isEqualArray";

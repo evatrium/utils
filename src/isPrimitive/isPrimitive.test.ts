@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isPrimitive } from '~/isPrimitive';
-
+import { isPrimitive } from "~/isPrimitive";
 
 describe("isPrimitive", () => {
 	it("should return true when value is a string", () => {
@@ -20,7 +19,7 @@ describe("isPrimitive", () => {
 	});
 
 	it("should return true when value is a symbol", () => {
-		expect(isPrimitive(Symbol())).toBeTruthy();
+		expect(isPrimitive(Symbol('asdf'))).toBeTruthy();
 	});
 
 	it("should return true when value is null", () => {

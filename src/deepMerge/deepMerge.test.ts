@@ -1,23 +1,23 @@
 import { describe, it, expect } from "vitest";
-import { deepMerge } from '~/deepMerge';
+import { deepMerge } from "~/deepMerge";
 import { createProfile } from "~/_testUtils";
 import { Obj } from "~/types";
 
 describe("deepmerge", () => {
-
-
 	it("should not be subject to prototype pollution", () => {
-		deepMerge({}, JSON.parse(`{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }`), {
-			clone: false
-		});
+		deepMerge(
+			{},
+			JSON.parse('{ "myProperty": "a", "__proto__" : { "isAdmin" : true } }'),
+			{
+				clone: false
+			}
+		);
 		// removing "if (key === "__proto__") continue;" from the "for in" loop
 		// would cause this to fail
 		expect({}).not.toHaveProperty("isAdmin");
 	});
 
-
 	it("should merge nested objects, clone, and overwrite arrays by default", () => {
-
 		const original = createProfile();
 
 		const update = {
@@ -32,7 +32,6 @@ describe("deepmerge", () => {
 		};
 
 		const merged = deepMerge(original, update);
-
 
 		// @ts-ignore
 		expect(merged !== original).toBeTruthy();
@@ -52,13 +51,9 @@ describe("deepmerge", () => {
 			favorite_movies: ["ex machina"],
 			team: {
 				owners: [],
-				members: [
-					{ id: 4, name: { first: "Teddy", last: "Flood" } }
-				]
+				members: [{ id: 4, name: { first: "Teddy", last: "Flood" } }]
 			}
 		});
-
-
 	});
 
 	it("should concat arrays when 'concat' option is passed to arrayMerge", () => {
@@ -83,13 +78,10 @@ describe("deepmerge", () => {
 					{ id: 1, name: { first: "Robert", last: "Ford" } },
 					{ id: 3, name: { first: "Bernard", last: "Lowe" } }
 				],
-				members: [
-					{ id: 4, name: { first: "Teddy", last: "Flood" } }
-				]
+				members: [{ id: 4, name: { first: "Teddy", last: "Flood" } }]
 			}
 		});
 	});
-
 
 	it("should deep merge each index of arrays when 'byIndex' option is passed to arrayMerge", () => {
 		const original = createProfile();
@@ -97,13 +89,8 @@ describe("deepmerge", () => {
 		const update = {
 			favorite_movies: ["matrix"],
 			team: {
-				owners: [
-					{ name: { first: "Rob" } },
-					{ is_homie: true }
-				],
-				members: [
-					{ is_homie: true }
-				]
+				owners: [{ name: { first: "Rob" } }, { is_homie: true }],
+				members: [{ is_homie: true }]
 			}
 		};
 
@@ -127,27 +114,23 @@ describe("deepmerge", () => {
 				]
 			}
 		});
-
 	});
-
 
 	it("should merge with custom array merge function when option is passed to arrayMerge", () => {
 		const original = createProfile();
 
 		const update = {
 			team: {
-				owners: [
-					{ id: 3, is_homie: true }
-				],
-				members: [
-					{ id: 4, is_homie: true }
-				]
+				owners: [{ id: 3, is_homie: true }],
+				members: [{ id: 4, is_homie: true }]
 			}
 		};
 
 		const testCustomArrayMerge_updateById = (target: Obj, source: Obj) =>
 			target.map((existing: Record<string, any>) => {
-				const update = source.find((it: Record<string, any>) => it.id === existing.id);
+				const update = source.find(
+					(it: Record<string, any>) => it.id === existing.id
+				);
 				if (update) return deepMerge(existing, update);
 				return existing;
 			});
@@ -174,9 +157,5 @@ describe("deepmerge", () => {
 				]
 			}
 		});
-
-
 	});
-
-
 });

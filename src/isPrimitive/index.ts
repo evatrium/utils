@@ -1,1 +1,1 @@
-export * from './isPrimitive'
+export * from "./isPrimitive";

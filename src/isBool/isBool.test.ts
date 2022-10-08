@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isBool } from '~/isBool';
+import { isBool } from "~/isBool";
 
 describe("isBool", () => {
-
 	const type = "boolean";
 	const isType = isBool;
 
@@ -24,5 +23,4 @@ describe("isBool", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

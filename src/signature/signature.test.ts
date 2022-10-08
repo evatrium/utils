@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { signature } from '~/signature';
+import { signature } from "~/signature";
 
 describe("signature", () => {
 	it("should convert data into a stringified thumbprint ", () => {
@@ -15,4 +15,3 @@ describe("signature", () => {
 		expect(signature(null)).toBe("null");
 	});
 });
-

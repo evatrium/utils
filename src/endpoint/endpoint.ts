@@ -3,7 +3,6 @@ import { isObjOrArr } from "~/isObjOrArr";
 import { isEmpty } from "~/isEmpty";
 import { stringifyParams } from "~/stringifyParams";
 
-
 /**
  * interpolates values in a template tag for building a request object
  * @param strings
@@ -23,40 +22,59 @@ import { stringifyParams } from "~/stringifyParams";
  * 		}
  *
  */
-export const endpoint = (strings: TemplateStringsArray, ...interpolations: any[] | any) =>
-	strings.reduce((out, string, i) => {
+export const endpoint = (
+	strings: TemplateStringsArray,
+	...interpolations: any[] | any
+) =>
+	strings.reduce(
+		(out, string, i) => {
+			let value = interpolations[i];
 
-		let value = interpolations[i];
+			if (i === 0) {
+				const [method, after] = string.split(":");
+				out.method = method.toUpperCase();
+				string = after;
+			}
 
-		if (i === 0) {
-			let [method, after] = string.split(":");
-			out.method = method.toUpperCase();
-			string = after;
-		}
+			// do we have a body
+			if (
+				isObjOrArr(value) &&
+				(string.endsWith(" ") || string.endsWith("\n"))
+			) {
+				out.body = JSON.stringify(value);
+				out.url += string.trim();
+				return out;
+			}
 
-		// do we have a body
-		if (isObjOrArr(value) && (string.endsWith(" ") || string.endsWith("\n"))) {
-			out.body = JSON.stringify(value);
-			out.url += string.trim();
+			// do we have search params
+			if (isObj(value)) {
+				if (!isEmpty(value)) {
+					out.search = value = `${
+						string.endsWith("?") ? "" : "?"
+					}${stringifyParams(value)}`;
+				} else value = "";
+			} else if (value === undefined) value = "";
+
+			out.url += `${string}${value}`;
+
 			return out;
-		}
+		},
+		{ method: "", url: "", search: "", body: undefined } as Record<string, any>
+	);
 
-		// do we have search params
-		if (isObj(value)) {
-			if (!isEmpty(value)) {
-				out.search = value = `${string.endsWith("?") ? "" : "?"}${stringifyParams(value)}`;
-			} else value = "";
-		} else if (value === undefined) value = "";
-
-		out.url += `${string}${value}`;
-
-		return out;
-	}, { method: "", url: "", search: "", body: undefined } as Record<string, any>);
-
-//@TODO
+// @TODO
 export type EndpointReturnType = {
-	method: "POST" | "PUT" | "PATCH" | "GET" | "DELETE" | "HEAD" | "OPTIONS" | "CONNECT" | "TRACE",
-	url: string,
-	search: string,
-	body: string,
-}
+	method:
+		| "POST"
+		| "PUT"
+		| "PATCH"
+		| "GET"
+		| "DELETE"
+		| "HEAD"
+		| "OPTIONS"
+		| "CONNECT"
+		| "TRACE";
+	url: string;
+	search: string;
+	body: string;
+};

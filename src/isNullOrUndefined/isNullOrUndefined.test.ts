@@ -1,10 +1,8 @@
 import { describe, it, expect } from "vitest";
 
-import { isNullOrUndefined } from '~/isNullOrUndefined';
-
+import { isNullOrUndefined } from "~/isNullOrUndefined";
 
 describe("isNullOrUndefined", () => {
-
 	const type = "null or undefined";
 	const isType = isNullOrUndefined;
 
@@ -24,5 +22,4 @@ describe("isNullOrUndefined", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

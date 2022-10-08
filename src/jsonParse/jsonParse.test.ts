@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { jsonParse, JsonParseResults } from '~/jsonParse';
+import { jsonParse, JsonParseResults } from "~/jsonParse";
 
 describe("jsonParse", () => {
-
 	it("should parse json and return JsonParseResults", () => {
 		const data = { foo: "bar" };
 		const results: JsonParseResults = { data, error: undefined };
@@ -17,5 +16,4 @@ describe("jsonParse", () => {
 		};
 		expect(jsonParse("{!@#$!@#%!@#^%:###****}")).toMatchObject(result);
 	});
-
 });

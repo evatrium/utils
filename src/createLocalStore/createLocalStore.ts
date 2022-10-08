@@ -1,10 +1,10 @@
-import {jsonParse} from "~/jsonParse";
-import {isWeb} from "~/isWeb";
-import {eventListener} from "~/eventListener";
-import {debounce} from "~/debounce";
+import { jsonParse } from "~/jsonParse";
+import { isWeb } from "~/isWeb";
+import { eventListener } from "~/eventListener";
+import { debounce } from "~/debounce";
 
 export type LocalStoreOptions = {
-	debounceTime?: number
+	debounceTime?: number;
 };
 
 /**
@@ -31,7 +31,9 @@ export type LocalStoreOptions = {
  * localStore.setItemDebounced("num", (num + 1))
  *
  */
-export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) => {
+export const createLocalStore = ({
+	debounceTime = 0
+}: LocalStoreOptions = {}) => {
 	/**
 	 * JSON.stringifies the value before setting it to local storage.
 	 * @param key
@@ -52,7 +54,7 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 * @returns data | null
 	 */
 	const getItem = (key: string) => {
-		let item = ls.getItem(key);
+		const item = ls.getItem(key);
 		if (!item || item === "undefined") return null;
 		const { data, error } = jsonParse(item);
 		error && console.error(error);
@@ -75,7 +77,9 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 * @param callback
 	 */
 	const subscribe = (callback: Function) => {
-		return !isWeb ? () => void 0 : eventListener(window, "storage", callback as EventListener);
+		return !isWeb
+			? () => void 0
+			: eventListener(window, "storage", callback as EventListener);
 	};
 
 	/**
@@ -86,7 +90,7 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 */
 	const subscribeToKey = (key: string, callback: Function) =>
 		subscribe((e: StorageEventInit) => {
-			if(process.env.NODE_ENV === 'test') callback('test'); //@TODO: jsdom testing env doesn't emit the correct storage event
+			if (process.env.NODE_ENV === "test") callback("test"); // @TODO: jsdom testing env doesn't emit the correct storage event
 			if (e.storageArea === ls && e.key === key) {
 				const { data, error } = jsonParse(e.newValue as string);
 				error ? console.error(error) : callback(data || null);
@@ -104,7 +108,6 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	};
 };
 
-
 // mock
 let ls: any = {
 	_store: {},
@@ -112,7 +115,7 @@ let ls: any = {
 		return this._store[key] || null;
 	},
 	setItem(key: string, val: any) {
-		return this._store[key] = val;
+		return (this._store[key] = val);
 	},
 	clear() {
 		this._store = {};
@@ -123,4 +126,3 @@ let ls: any = {
 };
 
 isWeb && (ls = window.localStorage);
-

@@ -4,9 +4,8 @@ import { wait } from "lib";
 
 describe("eventListener", () => {
 	it("listens and unlistens to events", async () => {
-
 		const spyOnMe = {
-			func: () => void 0
+			func: () => undefined
 		};
 		const funcSpy = vi.spyOn(spyOnMe, "func");
 
@@ -25,6 +24,5 @@ describe("eventListener", () => {
 		await wait(10);
 
 		expect(funcSpy).toBeCalledTimes(1);
-
 	});
 });

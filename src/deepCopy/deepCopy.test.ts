@@ -1,7 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { deepCopy, simpleDeepCopy } from '~/deepCopy';
-import { createData, createSerializableData, serializableDataNestedResult } from "~/_testUtils";
-
+import { deepCopy, simpleDeepCopy } from "~/deepCopy";
+import {
+	createData,
+	createSerializableData,
+	serializableDataNestedResult
+} from "~/_testUtils";
 
 describe("simpleDeepCopy", () => {
 	it("should make a copy of nested data. Original should not be equal to copy", () => {
@@ -23,7 +26,9 @@ describe("simpleDeepCopy", () => {
 		expect(originalData.object === copy.object).toBeFalsy();
 		expect(originalData.object.nested === copy.object.nested).toBeFalsy();
 		expect(originalData.object.nested === copy.object.nested).toBeFalsy();
-		expect(originalData.object.nested.object === copy.object.nested.object).toBeFalsy();
+		expect(
+			originalData.object.nested.object === copy.object.nested.object
+		).toBeFalsy();
 
 		expect(originalData.array === copy.array).toBeFalsy();
 		expect(originalData.array[3] === copy.array[3]).toBeFalsy();
@@ -44,13 +49,10 @@ describe("simpleDeepCopy", () => {
 		copy.array.push("humidifier");
 
 		expect(originalData.array).not.toContain("humidifier");
-
 	});
 });
 
 describe("deepCopy", () => {
-
-
 	it("should make a copy of nested data. Original should not be equal to copy", () => {
 		const originalData = createData(true);
 
@@ -76,9 +78,13 @@ describe("deepCopy", () => {
 
 		expect(originalData.nested2.array[3]).not.toBeUndefined();
 		expect(originalData.nested2.array[3] === copy.nested2.array[3]).toBeFalsy();
-		expect(originalData.nested2.array[3].array === copy.nested2.array[3].array).toBeFalsy();
+		expect(
+			originalData.nested2.array[3].array === copy.nested2.array[3].array
+		).toBeFalsy();
 
-		expect(originalData.nested2.array[3].object === copy.nested2.array[3].object).toBeFalsy();
+		expect(
+			originalData.nested2.array[3].object === copy.nested2.array[3].object
+		).toBeFalsy();
 	});
 
 	it("should make copies of date objects, Maps, and Sets", () => {

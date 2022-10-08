@@ -1,12 +1,10 @@
 import { describe, it, expect } from "vitest";
 
-import { isString } from '~/isString';
+import { isString } from "~/isString";
 
 describe("isString", () => {
-
 	const type = "string";
 	const isType = isString;
-
 
 	it(`should return true when value is ${type}`, () => {
 		expect(isType("")).toBeTruthy();
@@ -24,5 +22,4 @@ describe("isString", () => {
 		expect(isType(new String("test"))).toBeFalsy();
 		expect(isType(() => null)).toBeFalsy();
 	});
-
 });

@@ -1,1 +1,1 @@
-export * from './isPromise'
+export * from "./isPromise";

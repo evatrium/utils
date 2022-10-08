@@ -1,10 +1,8 @@
 import { describe, it, expect } from "vitest";
 
-import { isFunc } from '~/isFunc';
-
+import { isFunc } from "~/isFunc";
 
 describe("isFunc", () => {
-
 	const type = "function";
 	const isType = isFunc;
 
@@ -28,5 +26,4 @@ describe("isFunc", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

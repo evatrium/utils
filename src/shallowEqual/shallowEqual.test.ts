@@ -1,14 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { shallowEqual } from '~/shallowEqual';
+import { shallowEqual } from "~/shallowEqual";
 
 // some test cases are from:
 // https://github.com/dashed/shallowequal/blob/master/test/shallowequal.test.js#L46
 describe("shallowEqual", () => {
-
 	const comparator = shallowEqual;
 
 	it("returns false if either argument is null", () => {
-
 		expect(comparator(null, {})).toBeFalsy();
 		expect(comparator({}, null)).toBeFalsy();
 	});
@@ -39,7 +37,7 @@ describe("shallowEqual", () => {
 	});
 
 	it("returns true if values are not primitives but are ===", () => {
-		let obj = {};
+		const obj = {};
 		expect(
 			comparator({ a: 1, b: 2, c: obj }, { a: 1, b: 2, c: obj })
 		).toBeTruthy();
@@ -60,6 +58,4 @@ describe("shallowEqual", () => {
 		object1.a = 1;
 		expect(comparator(object1, object2)).toBeTruthy();
 	});
-
-
 });

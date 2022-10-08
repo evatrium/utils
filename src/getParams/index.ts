@@ -1,1 +1,1 @@
-export * from './getParams'
+export * from "./getParams";

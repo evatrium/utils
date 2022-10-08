@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isDateObject } from '~/isDateObject';
+import { isDateObject } from "~/isDateObject";
 
 describe("isDateObject", () => {
-
 	const type = "date";
 	const isType = isDateObject;
 
@@ -28,5 +27,4 @@ describe("isDateObject", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

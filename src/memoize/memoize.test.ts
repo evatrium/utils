@@ -3,7 +3,6 @@ import { memoize } from "~/memoize";
 
 describe("memoize", () => {
 	it("should only call the source function if its called with new arguments, and when cache is cleared", () => {
-
 		const spyOnMe = {
 			func: (a: any = "", b: any = "", c: any = ""): string => {
 				return `${a}${b}${c}`;
@@ -19,34 +18,34 @@ describe("memoize", () => {
 		expect(res).toBe("abc");
 		expect(funcSpy).toBeCalledTimes(1);
 
-		let arg: Record<string, any> = { id: "asdf", users: ["bob", "joe"] };
+		const arg: Record<string, any> = { id: "asdf", users: ["bob", "joe"] };
 		res = memoizedFunc(arg);
 
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(2);
 
-		//should hit cache
+		// should hit cache
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(2);
 
-		//should hit cache
+		// should hit cache
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(2);
 
-		//should call func
+		// should call func
 		arg.foo = "bar";
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(3);
 
-		//should hit cache
+		// should hit cache
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(3);
 
-		//should hit cache
+		// should hit cache
 		delete arg.foo;
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
@@ -60,6 +59,5 @@ describe("memoize", () => {
 		res = memoizedFunc(arg);
 		expect(res).toBe(`${arg}`);
 		expect(funcSpy).toBeCalledTimes(4);
-
 	});
 });

@@ -2,8 +2,7 @@ import { ObjArr, Obj } from "~/types";
 import { isFunc } from "~/isFunc";
 import { isNum } from "~/isNum";
 
-
-type ValueGetter = (item: Obj) => number
+type ValueGetter = (item: Obj) => number;
 /**
  * Aggregate the value of a number of a prop in an ObjArr
  * @param objArr
@@ -21,7 +20,11 @@ type ValueGetter = (item: Obj) => number
  * console.log(result); // 3
  *
  */
-export const getTotalOfPropInObjArr = (objArr: ObjArr, prop: string | ValueGetter, initial: number = 0) => {
+export const getTotalOfPropInObjArr = (
+	objArr: ObjArr,
+	prop: string | ValueGetter,
+	initial: number = 0
+) => {
 	const propGetterIsFunc = isFunc(prop);
 	return objArr.reduce((acc: number, curr: Obj) => {
 		const val = propGetterIsFunc ? prop(curr) : curr[prop];

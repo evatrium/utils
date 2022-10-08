@@ -1,1 +1,1 @@
-export * from './snakeToSentenceCase'
+export * from "./snakeToSentenceCase";

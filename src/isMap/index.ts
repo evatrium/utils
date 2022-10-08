@@ -1,1 +1,1 @@
-export * from './isMap'
+export * from "./isMap";

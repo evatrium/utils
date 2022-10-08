@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { tryCatch } from '~/tryCatch';
+import { tryCatch } from "~/tryCatch";
 
 describe("tryCatch", () => {
 	it("should wrap an async func with try catch and return the correct results object", async () => {
-
-		const resolveWithData = async (arg1: string, arg2: string) => Promise.resolve({ arg1, arg2 });
+		const resolveWithData = async (arg1: string, arg2: string) =>
+			Promise.resolve({ arg1, arg2 });
 
 		const prom = tryCatch(resolveWithData)("foo", "bar");
 
@@ -23,6 +23,5 @@ describe("tryCatch", () => {
 		expect(data).toBeUndefined();
 		expect(error.message).toBe("foo");
 		expect(error).toBeInstanceOf(Error);
-
 	});
 });

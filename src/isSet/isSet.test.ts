@@ -1,9 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isSet } from '~/isSet';
-
+import { isSet } from "~/isSet";
 
 describe("isSet", () => {
-
 	const type = "instance of set";
 	const isType = isSet;
 
@@ -27,5 +25,4 @@ describe("isSet", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

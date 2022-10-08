@@ -1,1 +1,1 @@
-export * from './createSubscription'
+export * from "./createSubscription";

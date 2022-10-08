@@ -26,7 +26,7 @@ type CreateSubscription = () => [SubscribeFunc, PublishFunc, UnSubscribeFunc];
  * 	// logs nothing
  */
 export const createSubscription: CreateSubscription = () => {
-	let subs: Function[] = [];
+	const subs: Function[] = [];
 
 	const unsub = (subscription: Function): any => {
 		subs.splice(subs.indexOf(subscription) >>> 0, 1);
@@ -41,9 +41,5 @@ export const createSubscription: CreateSubscription = () => {
 		subs.slice().map(f => f(...update));
 	};
 
-	return [
-		sub,
-		pub,
-		unsub
-	];
+	return [sub, pub, unsub];
 };

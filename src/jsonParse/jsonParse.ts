@@ -1,8 +1,7 @@
-
 export type JsonParseResults = {
-	data: ReturnType<typeof JSON.parse> | undefined,
-	error: undefined | Error
-}
+	data: ReturnType<typeof JSON.parse> | undefined;
+	error: undefined | Error;
+};
 /**
  * safe jsonParse wrapped in try catch with predictable return object
  * @returns { data, error }

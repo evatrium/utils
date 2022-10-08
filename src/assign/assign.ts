@@ -1,6 +1,6 @@
 import { ObjOrArrType } from "~/types";
 
-type AssignType = <T1 extends ObjOrArrType, T2 extends ObjOrArrType> (
+type AssignType = <T1 extends ObjOrArrType, T2 extends ObjOrArrType>(
 	target: T1,
 	source: T2
 ) => T1;
@@ -11,11 +11,11 @@ type AssignType = <T1 extends ObjOrArrType, T2 extends ObjOrArrType> (
  * @returns original target with updated keys
  */
 export const assign: AssignType = (target, source) => {
-	for (let key in source) {
+	for (const key in source) {
 		if (key === "__proto__") {
 			continue;
 		}
 		target[key] = source[key];
 	}
-	return target
+	return target;
 };

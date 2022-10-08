@@ -1,4 +1,3 @@
-
 export const createProfile = () => ({
 	id: 2,
 	name: { fist: "Dolores", last: "Abernathy" },
@@ -12,16 +11,13 @@ export const createProfile = () => ({
 			{ id: 1, name: { first: "Robert", last: "Ford" } },
 			{ id: 3, name: { first: "Bernard", last: "Lowe" } }
 		],
-		members: [
-			{ id: 4, name: { first: "Teddy", last: "Flood" } }
-		]
+		members: [{ id: 4, name: { first: "Teddy", last: "Flood" } }]
 	}
 });
 
-
 class Classy {
 	constructor(public foo: string) {
-	}
+	} // eslint-disable-line
 }
 
 const func = () => 0;
@@ -34,12 +30,7 @@ export const createSerializableData = (nested?: boolean, extra?: any) => ({
 	negNum: -1,
 	zero: 0,
 	boolean: true,
-	array: [
-		"a",
-		"b",
-		"c",
-		nested && createSerializableData()
-	].filter(Boolean),
+	array: ["a", "b", "c", nested && createSerializableData()].filter(Boolean),
 	object: {
 		foo: "bar",
 		...(nested && { nested: createSerializableData() })
@@ -85,36 +76,38 @@ export const createDataManyTypes = (nested?: boolean) => {
 
 // console.log(createSerializableData(true));
 export const serializableDataNestedResult = {
-	"null": null,
-	"string": "foobar",
-	"number": 1,
-	"negNum": -1,
-	"zero": 0,
-	"boolean": true,
-	"array": ["a", "b", "c", {
-		"null": null,
-		"string": "foobar",
-		"number": 1,
-		"negNum": -1,
-		"zero": 0,
-		"boolean": true,
-		"array": ["a", "b", "c"],
-		"object": { "foo": "bar" }
-	}],
-	"object": {
-		"foo": "bar",
-		"nested": {
-			"null": null,
-			"string": "foobar",
-			"number": 1,
-			"negNum": -1,
-			"zero": 0,
-			"boolean": true,
-			"array": ["a", "b", "c"],
-			"object": { "foo": "bar" }
+	null: null,
+	string: "foobar",
+	number: 1,
+	negNum: -1,
+	zero: 0,
+	boolean: true,
+	array: [
+		"a",
+		"b",
+		"c",
+		{
+			null: null,
+			string: "foobar",
+			number: 1,
+			negNum: -1,
+			zero: 0,
+			boolean: true,
+			array: ["a", "b", "c"],
+			object: { foo: "bar" }
+		}
+	],
+	object: {
+		foo: "bar",
+		nested: {
+			null: null,
+			string: "foobar",
+			number: 1,
+			negNum: -1,
+			zero: 0,
+			boolean: true,
+			array: ["a", "b", "c"],
+			object: { foo: "bar" }
 		}
 	}
 };
-
-
-

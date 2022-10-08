@@ -1,1 +1,1 @@
-export * from './pluck'
+export * from "./pluck";

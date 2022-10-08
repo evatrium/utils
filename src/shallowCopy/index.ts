@@ -1,1 +1,1 @@
-export * from './shallowCopy'
+export * from "./shallowCopy";

@@ -1,1 +1,1 @@
-export * from './groupObjArrByProp'
+export * from "./groupObjArrByProp";

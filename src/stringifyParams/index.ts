@@ -1,1 +1,1 @@
-export * from './stringifyParams'
+export * from "./stringifyParams";

@@ -3,4 +3,7 @@
  * @param string
  */
 export const sentenceCase = (string: string = "") =>
-	string.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase());
+	string.replace(
+		/\w\S*/g,
+		txt => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+	);

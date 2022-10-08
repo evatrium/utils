@@ -29,8 +29,7 @@ export function debounce<TFunc extends (this: any, ...newArgs: any[]) => void>(
 	func: TFunc,
 	wait: number = 0
 ): DebouncedFunc<TFunc> {
-
-	let timeout: any = undefined;
+	let timeout: any;
 
 	function debounced(
 		this: ThisParameterType<TFunc>,

@@ -3,9 +3,7 @@ import { createLocalStore } from "~/createLocalStore";
 import { wait } from "~/wait";
 
 describe("createLocalStore", () => {
-
 	it("should stringify and parse values from local storage", async () => {
-
 		const ls = createLocalStore({ debounceTime: 10 });
 
 		const item = { foo: "bar" };
@@ -29,13 +27,9 @@ describe("createLocalStore", () => {
 		ls.clear();
 
 		expect(ls.getItem("foo")).toBe(null);
-
-
 	});
 
-
 	it("should subscribe to storage events", async () => {
-
 		const spyOnMe = {
 			func: () => void 0
 		};
@@ -45,7 +39,7 @@ describe("createLocalStore", () => {
 
 		ls.subscribeToKey("test", spyOnMe.func);
 
-		//@TODO: jsdom testing env doesn't emit the correct storage event
+		// @TODO: jsdom testing env doesn't emit the correct storage event
 		// window.addEventListener('storage', (...args)=>{
 		// 	console.log(...args);
 		// })
@@ -55,7 +49,5 @@ describe("createLocalStore", () => {
 		await wait(10);
 
 		expect(funcSpy).toBeCalledTimes(1);
-
 	});
-
 });

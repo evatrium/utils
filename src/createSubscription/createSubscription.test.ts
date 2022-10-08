@@ -2,9 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { createSubscription } from "~/createSubscription";
 
 describe("createSubscription", () => {
-
 	it("subscribes listeners, publishes data, and unsubscribes", async () => {
-
 		const [sub, pub] = createSubscription();
 
 		const spyOnMe = {
@@ -26,7 +24,5 @@ describe("createSubscription", () => {
 		pub("yo yo");
 		pub("yo yo");
 		expect(funcSpy).toBeCalledTimes(2);
-
 	});
-
 });

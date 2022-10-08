@@ -1,1 +1,1 @@
-export * from './isRegExp'
+export * from "./isRegExp";

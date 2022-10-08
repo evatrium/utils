@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isMap } from '~/isMap';
+import { isMap } from "~/isMap";
 
 describe("isMap", () => {
-
 	const type = "instance of map";
 	const isType = isMap;
 
@@ -26,5 +25,4 @@ describe("isMap", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

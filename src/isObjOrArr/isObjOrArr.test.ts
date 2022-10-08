@@ -1,9 +1,8 @@
 import { describe, it, expect } from "vitest";
 
-import { isObjOrArr } from '~/isObjOrArr';
+import { isObjOrArr } from "~/isObjOrArr";
 
 describe("isObjOrArr", () => {
-
 	const type = "plain object {} or array []";
 	const isType = isObjOrArr;
 
@@ -22,5 +21,4 @@ describe("isObjOrArr", () => {
 		expect(isType(() => null)).toBeFalsy();
 		expect(isType(new Blob())).toBeFalsy();
 	});
-
 });

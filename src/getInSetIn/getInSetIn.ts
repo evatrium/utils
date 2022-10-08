@@ -16,14 +16,18 @@ const toPath = (path: string) => path.match(/([^[.\]])+/g) || [];
  * @param path - dot walk / bracket select to the item. ex: 'a.b.c[0]'
  * @param fallback - the default value if the item doesn't exist
  */
-export function getIn(objOrArr: ObjOrArrType, path: string | Array<number | string>, fallback?: any) {
-	let p = 0, pathArray = Array.isArray(path) ? path : toPath(path);
+export function getIn(
+	objOrArr: ObjOrArrType,
+	path: string | Array<number | string>,
+	fallback?: any
+) {
+	let p = 0;
+	const pathArray = Array.isArray(path) ? path : toPath(path);
 	while (objOrArr && p < pathArray.length) {
 		objOrArr = objOrArr[<any>pathArray[p++]];
 	}
 	return objOrArr === undefined ? fallback : objOrArr;
 }
-
 
 /**
  * Deeply set a value in a nested object or array via its path
@@ -40,18 +44,19 @@ export function getIn(objOrArr: ObjOrArrType, path: string | Array<number | stri
  * @param value - the value you want to set in that path
  */
 export function setIn(objOrArr: ObjOrArrType, path: string, value: any): any {
-	let res: any = shallowCopy(objOrArr);
+	const res: any = shallowCopy(objOrArr);
 	let resVal: any = res;
 	let i = 0;
-	let pathArray = toPath(path);
+	const pathArray = toPath(path);
 	for (; i < pathArray.length - 1; i++) {
 		const currentPath = pathArray[i];
-		let currentObj = getIn(objOrArr, pathArray.slice(0, i + 1));
+		const currentObj = getIn(objOrArr, pathArray.slice(0, i + 1));
 		if (currentObj && (isObj(currentObj) || Array.isArray(currentObj))) {
 			resVal = resVal[currentPath] = shallowCopy(currentObj);
 		} else {
 			const nextPath = pathArray[i + 1];
-			resVal = resVal[currentPath] = isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {};
+			resVal = resVal[currentPath] =
+				isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {};
 		}
 	}
 	// Return original object if new value is the same as current
@@ -64,4 +69,5 @@ export function setIn(objOrArr: ObjOrArrType, path: string, value: any): any {
 	return res;
 }
 
-const isInteger = (value: any): boolean => String(Math.floor(Number(value))) === value;
+const isInteger = (value: any): boolean =>
+	String(Math.floor(Number(value))) === value;

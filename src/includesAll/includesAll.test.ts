@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { includesAll } from '~/includesAll';
+import { includesAll } from "~/includesAll";
 
 describe("includesAll", () => {
 	it("should return true if the array1 includes all items from array2", () => {

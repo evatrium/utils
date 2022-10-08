@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { shallowCopy } from '~/shallowCopy';
+import { shallowCopy } from "~/shallowCopy";
 
 describe("shallowCopy", () => {
 	it("should make a shallow copy of an obj/array ", () => {

@@ -1,1 +1,1 @@
-export * from './isObj'
+export * from "./isObj";

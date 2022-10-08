@@ -1,14 +1,13 @@
 import { describe, it, expect } from "vitest";
 
-import { isBigInt } from '~/isBigInt';
+import { isBigInt } from "~/isBigInt";
 
 describe("isBigInt", () => {
-
 	const type = "bigint";
 	const isType = isBigInt;
 
 	it(`should return true when value is ${type}`, () => {
-		const bigInt = BigInt(Number.MAX_SAFE_INTEGER)
+		const bigInt = BigInt(Number.MAX_SAFE_INTEGER);
 
 		expect(isType(bigInt)).toBeTruthy();
 
@@ -28,5 +27,4 @@ describe("isBigInt", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

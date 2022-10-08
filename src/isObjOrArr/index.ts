@@ -1,1 +1,1 @@
-export * from './isObjOrArr'
+export * from "./isObjOrArr";

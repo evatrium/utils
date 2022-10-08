@@ -1,9 +1,8 @@
 import { describe, it, expect } from "vitest";
 
-import { isNum } from '~/isNum';
+import { isNum } from "~/isNum";
 
 describe("isNum", () => {
-
 	const type = "number";
 	const isType = isNum;
 	const bigInt = BigInt(Number.MAX_SAFE_INTEGER);
@@ -32,5 +31,4 @@ describe("isNum", () => {
 		expect(isType(bigInt)).toBeFalsy();
 		expect(isType(bigInt_n)).toBeFalsy();
 	});
-
 });

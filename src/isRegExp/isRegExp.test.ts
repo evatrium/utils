@@ -1,13 +1,10 @@
 import { describe, it, expect } from "vitest";
 
-import { isRegExp } from '~/isRegExp';
-
+import { isRegExp } from "~/isRegExp";
 
 describe("isRegexp", () => {
-
 	const type = "regex";
 	const isType = isRegExp;
-
 
 	it(`should return true when value is a ${type}`, () => {
 		expect(isType(new RegExp("[a-z]"))).toBeTruthy();
@@ -24,5 +21,4 @@ describe("isRegexp", () => {
 		expect(isType(new String("test"))).toBeFalsy();
 		expect(isType(() => null)).toBeFalsy();
 	});
-
 });

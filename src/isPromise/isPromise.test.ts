@@ -1,9 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isPromise } from '~/isPromise';
-
+import { isPromise } from "~/isPromise";
 
 describe("isPromise", () => {
-
 	const type = "promise";
 	const isType = isPromise;
 
@@ -29,5 +27,4 @@ describe("isPromise", () => {
 		expect(isType({})).toBeFalsy();
 		expect(isType([])).toBeFalsy();
 	});
-
 });

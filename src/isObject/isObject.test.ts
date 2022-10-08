@@ -1,10 +1,8 @@
 import { describe, it, expect } from "vitest";
 
-import { isObject } from '~/isObject';
-
+import { isObject } from "~/isObject";
 
 describe("isObject", () => {
-
 	const type = "object and not null";
 	const isType = isObject;
 
@@ -25,5 +23,4 @@ describe("isObject", () => {
 		expect(isType(1)).toBeFalsy();
 		expect(isType(() => null)).toBeFalsy();
 	});
-
 });

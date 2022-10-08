@@ -1,6 +1,6 @@
-import {isDateObject} from "~/isDateObject";
-import {isPrimitive} from "~/isPrimitive";
-import {isObj} from "~/isObj";
+import { isDateObject } from "~/isDateObject";
+import { isPrimitive } from "~/isPrimitive";
+import { isObj } from "~/isObj";
 
 /**
  * deeply compares nested objects and nested arrays,
@@ -10,16 +10,21 @@ import {isObj} from "~/isObj";
 export const isEqual = (x: any, y: any): boolean => {
 	if (isPrimitive(x) || isPrimitive(y)) return x === y;
 	if (isDateObject(x) && isDateObject(y)) return x.getTime() === y.getTime();
-	const keys1 = Object.keys(x), keys2 = Object.keys(y);
+	const keys1 = Object.keys(x);
+	const keys2 = Object.keys(y);
 	if (keys1.length !== keys2.length) return false;
 	for (const key of keys1) {
-		let val1 = x[key], val2 = y[key];
+		const val1 = x[key];
+		const val2 = y[key];
 		if (!keys2.includes(key)) return false;
-		if ((isDateObject(val1) && isDateObject(val2))
-		|| (isObj(val1) && isObj(val2))
-		|| (Array.isArray(val1) && Array.isArray(val2))
-			? !isEqual(val1, val2) : val1 !== val2
-		) return false;
+		if (
+			(isDateObject(val1) && isDateObject(val2)) ||
+			(isObj(val1) && isObj(val2)) ||
+			(Array.isArray(val1) && Array.isArray(val2))
+				? !isEqual(val1, val2)
+				: val1 !== val2
+		)
+			return false;
 	}
 	return true;
 };
