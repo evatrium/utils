@@ -2,7 +2,6 @@
 	"include": [
 //		"app",
 		"./src",
-		"./test"
 	],
 	"references": [
 		{
@@ -56,7 +55,7 @@
 		"declaration": true,
 		//    "declarationMap": true,
 		// output .js.map sourcemap files for consumers
-		"sourceMap": true,
+//		"sourceMap": true,
 		// stricter type-checking for stronger correctness. Recommended by TS
 		"strict": true,
 		"strictNullChecks": true,
