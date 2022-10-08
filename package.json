@@ -75,6 +75,7 @@
 		"husky": "7.0.4",
 		"jsdom": "^20.0.0",
 		"lint-staged": "^13.0.3",
+		"plop": "^3.1.1",
 		"prettier": "^2.7.1",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
@@ -86,7 +87,5 @@
 		"vite-tsconfig-paths": "3.4.1",
 		"vitest": "^0.24.0"
 	},
-	"dependencies": {
-		"plop": "^3.1.1"
-	}
+	"dependencies": {}
 }
