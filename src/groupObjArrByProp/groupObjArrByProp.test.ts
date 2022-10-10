@@ -58,7 +58,9 @@ describe("groupObjArrByProp", () => {
 		});
 
 		expect(groups).toMatchObject({
-			comedy: [{ genre: "comedy", name: "idiocracy" }],
+			comedy: [
+				{ genre: "comedy", name: "idiocracy" }
+			],
 			scifi: [
 				{ genre: "scifi", name: "ex machina" },
 				{ genre: "scifi", name: "the matrix" }

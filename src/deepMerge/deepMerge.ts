@@ -3,18 +3,18 @@ import { assign } from "~/assign";
 import { isObj } from "~/isObj";
 import { isFunc } from "~/isFunc";
 
-type Options = {
+type DeepMergeOptions = {
 	clone?: boolean;
 	arrayMerge?: "overwrite" | "concat" | "byIndex" | DeepMerge;
 };
 
-type DeepMerge = <
+export type DeepMerge = <
 	T1 extends ObjOrArrType,
 	T2 extends Partial<T1 | ObjOrArrType>
 >(
 	target: T1,
 	source: T2,
-	options?: Options
+	options?: DeepMergeOptions
 ) => T2 | (T1 & T2);
 
 /**
@@ -33,7 +33,7 @@ type DeepMerge = <
 export const deepMerge: DeepMerge = (
 	target,
 	source,
-	options: Options = { clone: true, arrayMerge: "overwrite" }
+	options: DeepMergeOptions = { clone: true, arrayMerge: "overwrite" }
 ) => {
 	const tArr = Array.isArray(target);
 	const sArr = Array.isArray(source);
