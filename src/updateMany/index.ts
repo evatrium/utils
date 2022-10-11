@@ -1,1 +1,1 @@
-export * from './updateMany'
+export * from './updateMany';

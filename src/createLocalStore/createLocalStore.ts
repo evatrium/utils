@@ -1,18 +1,17 @@
-import { jsonParse } from "~/jsonParse";
-import { isWeb } from "~/isWeb";
-import { eventListener } from "~/eventListener";
-import { debounce } from "~/debounce";
-import { createSubscription, SubscriptionInstance } from "../createSubscription";
+import { jsonParse, JsonParseResults } from '~/jsonParse';
+import { isWeb } from '~/isWeb';
+import { eventListener } from '~/eventListener';
+import { debounce } from '~/debounce';
+import { createSubscription, SubscriptionInstance } from '~/createSubscription';
 
 export type LocalStoreOptions = {
 	debounceTime?: number;
 };
 
-
+type KeySubscriptionData = Pick<JsonParseResults, 'data'> | null;
 
 /**
- * Local Storage wrapper.
- * Automatically stringifies and parses values to and from storage.
+ * Stringifies and parses values to and from local storage.
  * Includes additional methods for optionally debouncing setItem
  * and subscribing to storage events on other browser tabs.
  * @param debounceTime - milliseconds to debounce "setItemDebounced"
@@ -56,7 +55,7 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 */
 	const getItem = (key: string) => {
 		const item = ls.getItem(key);
-		if (!item || item === "undefined") return null;
+		if (!item || item === 'undefined') return null;
 		const { data, error } = jsonParse(item);
 		error && console.error(error);
 		return data || null;
@@ -77,11 +76,11 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 * Subscribes to any storage event that happens on other browser tabs.
 	 * @param callback
 	 */
-	const subscribe = (callback: Function) => {
+	const subscribe = (callback: (e: StorageEventInit) => void) => {
 		if (!_storageEventSubscription) {
 			_storageEventSubscription = createSubscription();
 			// this lets us use only one storage event listener and publish to all subscribers
-			isWeb && eventListener(window, "storage", _storageEventSubscription.pub);
+			isWeb && eventListener(window, 'storage', _storageEventSubscription.pub);
 		}
 		return _storageEventSubscription.sub(callback); // returns unsub
 	};
@@ -92,9 +91,9 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 * @param key - The key to listen to.
 	 * @param callback - The function to execute when the key updates.
 	 */
-	const subscribeToKey = (key: string, callback: Function) =>
+	const subscribeToKey = (key: string, callback: (results: KeySubscriptionData) => void) =>
 		subscribe((e: StorageEventInit) => {
-			if (process.env.NODE_ENV === "test") callback("test"); // @TODO: jsdom testing env doesn't emit the correct storage event
+			if (process.env.NODE_ENV === 'test') callback({ data: 'test' }); // @TODO: jsdom testing env doesn't emit the correct storage event
 			if (e.storageArea === ls && e.key === key) {
 				const { data, error } = jsonParse(e.newValue as string);
 				error ? console.error(error) : callback(data || null);

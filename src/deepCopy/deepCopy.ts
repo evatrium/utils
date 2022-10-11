@@ -1,7 +1,4 @@
-import { isObj } from "~/isObj";
-import { isDateObject } from "~/isDateObject";
-import { isSet } from "~/isSet";
-import { isMap } from "~/isMap";
+import { isObj, isDateObject, isSet, isMap } from '~/isType';
 
 export type SimpleDeepCopy = <T>(data: T, _copier?: SimpleDeepCopy) => T;
 /**
@@ -15,7 +12,7 @@ export const simpleDeepCopy: SimpleDeepCopy = (data, _copier?) => {
 	if (isArr || isObj(data)) {
 		const copy: any = isArr ? [] : {};
 		for (const key in data) {
-			if (key === "__proto__") continue;
+			if (key === '__proto__') continue;
 			copy[key] = _copier(data[key], _copier);
 		}
 		return copy;

@@ -1,1 +1,1 @@
-export * from './findInArray'
+export * from './findInArray';

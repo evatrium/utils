@@ -1,1 +1,1 @@
-export * from "./isWeb";
+export * from './isWeb';

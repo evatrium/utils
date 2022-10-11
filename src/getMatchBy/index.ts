@@ -1,1 +1,1 @@
-export * from './getMatchBy'
+export * from './getMatchBy';

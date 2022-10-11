@@ -8,4 +8,4 @@
  * 		return mock;
  * };
  */
-export const wait = (time: number = 0) => new Promise(r => setTimeout(r, time));
+export const wait = (time = 0) => new Promise((r) => setTimeout(r, time));

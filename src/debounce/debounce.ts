@@ -27,14 +27,11 @@ export type DebouncedFunc<TFunc extends (this: any, ...args: any[]) => any> = {
  */
 export function debounce<TFunc extends (this: any, ...newArgs: any[]) => void>(
 	func: TFunc,
-	wait: number = 0
+	wait = 0
 ): DebouncedFunc<TFunc> {
 	let timeout: any;
 
-	function debounced(
-		this: ThisParameterType<TFunc>,
-		...newArgs: Parameters<TFunc>
-	) {
+	function debounced(this: ThisParameterType<TFunc>, ...newArgs: Parameters<TFunc>) {
 		const later = () => {
 			func.apply(this, newArgs);
 		};

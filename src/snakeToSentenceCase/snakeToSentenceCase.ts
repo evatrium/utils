@@ -1,5 +1,8 @@
-import { deSnake } from "~/deSnake";
-import { sentenceCase } from "~/sentenceCase";
+import { deSnake } from '~/deSnake';
+import { sentenceCase } from '~/sentenceCase';
 
-export const snakeToSentenceCase = (string: string = "") =>
-	sentenceCase(deSnake(string));
+/**
+ * snake_case => Sentence Case
+ * @param string
+ */
+export const snakeToSentenceCase = (string = '') => sentenceCase(deSnake(string));

@@ -1,9 +1,9 @@
-import { stringifyParams } from "~/stringifyParams";
-import { isObj } from "~/isObj";
-import { isEmpty } from "~/isEmpty";
+import { stringifyParams } from '~/stringifyParams';
+import { isObj } from '~/isType';
+import { isEmpty } from '~/isEmpty';
 
 /**
- * tagged template literal that stringifies objects into URLSearchParams
+ * tagged template literal that stringifies interpolated objects into URLSearchParams
  * @param strings
  * @param interpolations
  * @example
@@ -15,11 +15,9 @@ export const url = (strings: TemplateStringsArray, ...interpolations: any[]) =>
 	strings.reduce((out, string, i) => {
 		let value = interpolations[i];
 		if (isObj(value)) {
-			value = isEmpty(value)
-				? ""
-				: `${string.endsWith("?") ? "" : "?"}${stringifyParams(value)}`;
+			value = isEmpty(value) ? '' : `${string.endsWith('?') ? '' : '?'}${stringifyParams(value)}`;
 		}
-		if (value === undefined) value = "";
+		if (value === undefined) value = '';
 		out += `${string}${value}`;
 		return out;
-	}, "");
+	}, '');

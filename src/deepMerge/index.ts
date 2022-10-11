@@ -1,1 +1,1 @@
-export * from "./deepMerge";
+export * from './deepMerge';

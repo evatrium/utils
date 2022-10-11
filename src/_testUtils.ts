@@ -1,23 +1,22 @@
 export const createProfile = () => ({
 	id: 2,
-	name: { fist: "Dolores", last: "Abernathy" },
+	name: { fist: 'Dolores', last: 'Abernathy' },
 	is_robot: true,
 	permissions: {
 		is_owner: false
 	},
-	favorite_movies: ["ex machina"],
+	favorite_movies: ['ex machina'],
 	team: {
 		owners: [
-			{ id: 1, name: { first: "Robert", last: "Ford" } },
-			{ id: 3, name: { first: "Bernard", last: "Lowe" } }
+			{ id: 1, name: { first: 'Robert', last: 'Ford' } },
+			{ id: 3, name: { first: 'Bernard', last: 'Lowe' } }
 		],
-		members: [{ id: 4, name: { first: "Teddy", last: "Flood" } }]
+		members: [{ id: 4, name: { first: 'Teddy', last: 'Flood' } }]
 	}
 });
 
 class Classy {
-	constructor(public foo: string) {
-	} // eslint-disable-line
+	constructor(public foo: string) {} // eslint-disable-line
 }
 
 const func = () => 0;
@@ -25,14 +24,14 @@ const func = () => 0;
 // @ts-ignore
 export const createSerializableData = (nested?: boolean, extra?: any) => ({
 	null: null,
-	string: "foobar",
+	string: 'foobar',
 	number: 1,
 	negNum: -1,
 	zero: 0,
 	boolean: true,
-	array: ["a", "b", "c", nested && createSerializableData()].filter(Boolean),
+	array: ['a', 'b', 'c', nested && createSerializableData()].filter(Boolean),
 	object: {
-		foo: "bar",
+		foo: 'bar',
 		...(nested && { nested: createSerializableData() })
 	}
 });
@@ -46,11 +45,11 @@ export const createData = (nested?: boolean) => {
 			nested2: createSerializableData(nested)
 		}),
 		undefined: undefined,
-		date: new Date("2022-10-01"),
+		date: new Date('2022-10-01'),
 		map: new Map([
-			[1, "one"],
-			[2, "two"],
-			[3, "three"]
+			[1, 'one'],
+			[2, 'two'],
+			[3, 'three']
 		]),
 		set: new Set([1, 2])
 	};
@@ -59,11 +58,11 @@ export const createData = (nested?: boolean) => {
 // @ts-ignore
 export const createDataManyTypes = (nested?: boolean) => {
 	return {
-		symbol: Symbol("foobar"),
+		symbol: Symbol('foobar'),
 		NaN: NaN,
 		func,
-		classInstance: new Classy("fancy"),
-		regexp: new RegExp("[a-z]"),
+		classInstance: new Classy('fancy'),
+		regexp: new RegExp('[a-z]'),
 		promise: new Promise(() => 0),
 		blob: new Blob(),
 		...createData(),
@@ -77,37 +76,37 @@ export const createDataManyTypes = (nested?: boolean) => {
 // console.log(createSerializableData(true));
 export const serializableDataNestedResult = {
 	null: null,
-	string: "foobar",
+	string: 'foobar',
 	number: 1,
 	negNum: -1,
 	zero: 0,
 	boolean: true,
 	array: [
-		"a",
-		"b",
-		"c",
+		'a',
+		'b',
+		'c',
 		{
 			null: null,
-			string: "foobar",
+			string: 'foobar',
 			number: 1,
 			negNum: -1,
 			zero: 0,
 			boolean: true,
-			array: ["a", "b", "c"],
-			object: { foo: "bar" }
+			array: ['a', 'b', 'c'],
+			object: { foo: 'bar' }
 		}
 	],
 	object: {
-		foo: "bar",
+		foo: 'bar',
 		nested: {
 			null: null,
-			string: "foobar",
+			string: 'foobar',
 			number: 1,
 			negNum: -1,
 			zero: 0,
 			boolean: true,
-			array: ["a", "b", "c"],
-			object: { foo: "bar" }
+			array: ['a', 'b', 'c'],
+			object: { foo: 'bar' }
 		}
 	}
 };

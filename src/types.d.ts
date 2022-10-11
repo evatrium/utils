@@ -10,14 +10,7 @@ export type ObjOrArrType =
 	| ObjArr
 	| { [key: string | number]: ObjOrArrType };
 
-export type PrimitiveType =
-	| null
-	| undefined
-	| string
-	| number
-	| boolean
-	| symbol
-	| bigint;
+export type PrimitiveType = null | undefined | string | number | boolean | symbol | bigint;
 
 /** A parsed/serializable JSON value. */
 // Exclude<PrimitiveType, symbol | bigint>

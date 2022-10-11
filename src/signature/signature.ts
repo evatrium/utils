@@ -1,4 +1,4 @@
-import { isObjOrArr } from "~/isObjOrArr";
+import { isObjOrArr } from '~/isType';
 
 /**
  * nonstandard stringify
@@ -7,7 +7,7 @@ import { isObjOrArr } from "~/isObjOrArr";
  */
 export const signature = (data: any): string => {
 	if (!isObjOrArr(data)) return `${data}`;
-	let out = ""; // @ts-ignore
+	let out = ''; // @ts-ignore
 	for (const key in data) out += `${key}${signature(data[key])}`;
 	return out;
 };

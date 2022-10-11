@@ -1,4 +1,4 @@
-import { getMatchBy, MatchByOptions } from "~/getMatchBy";
+import { getMatchBy, MatchByOptions } from '~/getMatchBy';
 
 /**
  * finds item in array with equal value
@@ -9,7 +9,7 @@ import { getMatchBy, MatchByOptions } from "~/getMatchBy";
  */
 export const findInArray = (arr: any[], searchValue: any, options?: MatchByOptions) => {
 	const itemsMatch = getMatchBy(options);
-	return arr.find(arrItem => itemsMatch(arrItem, searchValue));
+	return arr.find((arrItem) => itemsMatch(arrItem, searchValue));
 };
 
 /**
@@ -19,5 +19,5 @@ export const findInArray = (arr: any[], searchValue: any, options?: MatchByOptio
  */
 export const createFindInArray = (options?: MatchByOptions) => {
 	const itemsMatch = getMatchBy(options);
-	return (arr: any[], item: any) => arr.find(arrItem => itemsMatch(arrItem, item));
+	return (arr: any[], item: any) => arr.find((arrItem) => itemsMatch(arrItem, item));
 };

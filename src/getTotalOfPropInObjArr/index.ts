@@ -1,1 +1,1 @@
-export * from "./getTotalOfPropInObjArr";
+export * from './getTotalOfPropInObjArr';

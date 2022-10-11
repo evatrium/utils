@@ -1,5 +1,5 @@
-import { ObjOrArrType } from "~/types";
-import { assign } from "~/assign";
+import { ObjOrArrType } from '~/types';
+import { assign } from '~/assign';
 
 /**
  * makes a shallow copy of array or object.

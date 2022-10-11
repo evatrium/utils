@@ -1,9 +1,7 @@
-.history
 .husky
-.vscode
+# .*
 coverage
 dist
 node_modules
-vite.config.ts
-_jest.config.ts
-.eslintcache
+#vite.config.ts
+_testUtils.ts

@@ -1,8 +1,5 @@
-import { hasKeys } from "~/hasKeys";
-import { isMap } from "~/isMap";
-import { isSet } from "~/isSet";
-import { isFunc } from "~/isFunc";
-import { isObject } from "~/isObject";
+import { hasKeys } from '~/hasKeys';
+import { isMap, isSet, isFunc, isObject } from '~/isType';
 
 /**
  * Checks if a data structure is empty: [], {}, Map, Set

@@ -1,63 +1,41 @@
-import { describe, it, expect } from "vitest";
-import { toggleSelection } from "~/toggleSelection";
+import { describe, it, expect } from 'vitest';
+import { toggleSelection } from '~/toggleSelection';
 
-describe("toggleSelection", () => {
+describe('toggleSelection', () => {
+	it('(simple arrays) adds item if it does not exist, removes it if it does exist', () => {
+		let selections = ['apples', 'bananas', 'pears'];
 
-	it("(simple arrays) adds item if it does not exist, removes it if it does exist", () => {
+		selections = toggleSelection(selections, 'carrots');
 
-		let selections = ["apples", "bananas", "pears"];
+		expect(selections).toMatchObject(['apples', 'bananas', 'pears', 'carrots']);
 
-		selections = toggleSelection(selections, "carrots");
+		selections = toggleSelection(selections, 'carrots');
 
-		expect(selections)
-			.toMatchObject(["apples", "bananas", "pears", "carrots"]);
-
-		selections = toggleSelection(selections, "carrots");
-
-		expect(selections)
-			.toMatchObject(["apples", "bananas", "pears"]);
-
+		expect(selections).toMatchObject(['apples', 'bananas', 'pears']);
 	});
 
-	it("(object arrays) adds item if it does not exist, removes it if it does exist", () => {
+	it('(object arrays) adds item if it does not exist, removes it if it does exist', () => {
+		let selections = [{ name: 'apples' }, { name: 'bananas' }, { name: 'pears' }];
 
-		let selections = [
-			{ name: "apples" },
-			{ name: "bananas" },
-			{ name: "pears" }
-		];
+		selections = toggleSelection(selections, { name: 'carrots' }, { matchBy: 'name' });
 
-		selections = toggleSelection(
-			selections,
-			{ name: "carrots" },
-			{ matchBy: "name" }
-		);
-
-		expect(selections)
-			.toMatchObject([
-				{ name: "apples" },
-				{ name: "bananas" },
-				{ name: "pears" },
-				{ name: "carrots" }
-			]);
+		expect(selections).toMatchObject([
+			{ name: 'apples' },
+			{ name: 'bananas' },
+			{ name: 'pears' },
+			{ name: 'carrots' }
+		]);
 
 		const [results, action] = toggleSelection(
 			selections,
-			{ name: "carrots" },
-			{ matchBy: "name", returnAction: true }
+			{ name: 'carrots' },
+			{ matchBy: 'name', returnAction: true }
 		);
 
-		expect(results)
-			.toMatchObject([
-				{ name: "apples" },
-				{ name: "bananas" },
-				{ name: "pears" }
-			]);
+		expect(results).toMatchObject([{ name: 'apples' }, { name: 'bananas' }, { name: 'pears' }]);
 
 		expect(action).toMatchObject({
-			removed: [{ name: "carrots" }]
+			removed: [{ name: 'carrots' }]
 		});
-
 	});
-
 });

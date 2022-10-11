@@ -1,1 +1,1 @@
-export * from "./propsChanged";
+export * from './propsChanged';

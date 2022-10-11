@@ -1,1 +1,1 @@
-export * from './excludeItemsFromArray'
+export * from './excludeItemsFromArray';

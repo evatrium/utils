@@ -1,6 +1,6 @@
 /**
- * converts kebab case to normal sentence case
+ * converts kebab case to normal case
  * foo-bar => foo bar
  * @param string
  */
-export const deKebab = (string: string = "") => string.split("-").join(" ");
+export const deKebab = (string = '') => string.split('-').join(' ');

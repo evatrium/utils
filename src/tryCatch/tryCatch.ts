@@ -15,9 +15,7 @@ export type TryCatchFunc<TFunc extends AsyncFunc> = {
  * 		error: the caught error
  *	}
  */
-export function tryCatch<TFunc extends AsyncFunc>(
-	asyncFunc: TFunc
-): TryCatchFunc<TFunc> {
+export function tryCatch<TFunc extends AsyncFunc>(asyncFunc: TFunc): TryCatchFunc<TFunc> {
 	async function tryCatchPromise(
 		this: ThisParameterType<TFunc>,
 		...newArgs: Parameters<TFunc>

@@ -1,5 +1,5 @@
-import { MatchByOptions } from "~/getMatchBy";
-import { createFindInArray } from "~/findInArray";
+import { MatchByOptions } from '~/getMatchBy';
+import { createFindInArray } from '~/findInArray';
 
 /**
  * Checks if arr1 includes all items from arr2
@@ -13,6 +13,6 @@ export const includesAll = (arr1: any[], arr2: any[], options?: MatchByOptions):
 	const len2 = arr2.length;
 	// if arr1 is empty then it fails the inspection
 	if (!len1 && len2) return false;
-	for (let i = len2; i--;) if (!isInArray(arr1, arr2[i])) return false;
+	for (let i = len2; i--; ) if (!isInArray(arr1, arr2[i])) return false;
 	return true;
 };

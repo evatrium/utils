@@ -1,10 +1,10 @@
-import { getMatchBy, MatchBy, MatchByOptions } from "~/getMatchBy";
-import { ObjArr } from "~/types";
-import { DeepMerge, deepMerge } from "~/deepMerge";
+import { getMatchBy, MatchBy, MatchByOptions } from '~/getMatchBy';
+import { ObjArr } from '~/types';
+import { DeepMerge, deepMerge } from '~/deepMerge';
 
-export type UpdateManyOptions = Omit<MatchByOptions, "matchByOnValue"> & {
-	matchBy: MatchBy,
-	updateFn?: DeepMerge,
+export type UpdateManyOptions = Omit<MatchByOptions, 'matchByOnValue'> & {
+	matchBy: MatchBy;
+	updateFn?: DeepMerge;
 };
 
 /**
@@ -15,6 +15,7 @@ export type UpdateManyOptions = Omit<MatchByOptions, "matchByOnValue"> & {
  *   matchBy: 'dot.walk' | custom equivalence function - (a,b) => (a === b)
  *   updateFn: (default:DeepMerge) - uses deepMerge by default or pass your custom merge function with same args
  * }
+ * @returns - a new array containing the updates
  */
 export const updateMany = (array: ObjArr, selections: ObjArr, options: UpdateManyOptions) => {
 	const { matchBy, updateFn = deepMerge } = options || {};
@@ -23,25 +24,17 @@ export const updateMany = (array: ObjArr, selections: ObjArr, options: UpdateMan
 	array = [...array];
 
 	for (let arrayIndex = 0; arrayIndex < array.length; arrayIndex++) {
-
 		for (let selectionsIndex = 0; selectionsIndex < selections.length; selectionsIndex++) {
-
-			let arrayItem = array[arrayIndex],
-
+			const arrayItem = array[arrayIndex],
 				selectionsItem = selections[selectionsIndex];
 
 			if (arrayItem && selectionsItem && itemsMatch(arrayItem, selectionsItem)) {
-
 				const result = updateFn(arrayItem, selectionsItem);
 
 				if (result) array[arrayIndex] = result;
-
 			}
-
 		} // nested for
-
 	} // outer for
 
 	return array;
-
 };

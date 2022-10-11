@@ -1,6 +1,4 @@
-import { isDateObject } from "~/isDateObject";
-import { isPrimitive } from "~/isPrimitive";
-import { isObj } from "~/isObj";
+import { isObj, isDateObject, isPrimitive } from '~/isType';
 
 /**
  * deeply compares nested objects and nested arrays,

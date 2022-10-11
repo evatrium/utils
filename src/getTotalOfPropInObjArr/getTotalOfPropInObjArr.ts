@@ -1,6 +1,5 @@
-import { ObjArr, Obj } from "~/types";
-import { isFunc } from "~/isFunc";
-import { isNum } from "~/isNum";
+import { ObjArr, Obj } from '~/types';
+import { isFunc, isNum } from '~/isType';
 
 type ValueGetter = (item: Obj) => number;
 /**
@@ -20,11 +19,7 @@ type ValueGetter = (item: Obj) => number;
  * console.log(result); // 3
  *
  */
-export const getTotalOfPropInObjArr = (
-	objArr: ObjArr,
-	prop: string | ValueGetter,
-	initial: number = 0
-) => {
+export const getTotalOfPropInObjArr = (objArr: ObjArr, prop: string | ValueGetter, initial = 0) => {
 	const propGetterIsFunc = isFunc(prop);
 	return objArr.reduce((acc: number, curr: Obj) => {
 		const val = propGetterIsFunc ? prop(curr) : curr[prop];

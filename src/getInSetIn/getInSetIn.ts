@@ -1,6 +1,6 @@
-import { shallowCopy } from "~/shallowCopy";
-import { isObj } from "~/isObj";
-import { ObjOrArrType } from "~/types";
+import { shallowCopy } from '~/shallowCopy';
+import { isObj } from '~/isType';
+import { ObjOrArrType } from '~/types';
 
 // https://youmightnotneed.com/lodash/
 // toPath('a[0].b.c') // => ['a', '0', 'b', 'c']
@@ -55,8 +55,7 @@ export function setIn(objOrArr: ObjOrArrType, path: string, value: any): any {
 			resVal = resVal[currentPath] = shallowCopy(currentObj);
 		} else {
 			const nextPath = pathArray[i + 1];
-			resVal = resVal[currentPath] =
-				isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {};
+			resVal = resVal[currentPath] = isInteger(nextPath) && Number(nextPath) >= 0 ? [] : {};
 		}
 	}
 	// Return original object if new value is the same as current
@@ -69,5 +68,4 @@ export function setIn(objOrArr: ObjOrArrType, path: string, value: any): any {
 	return res;
 }
 
-const isInteger = (value: any): boolean =>
-	String(Math.floor(Number(value))) === value;
+const isInteger = (value: any): boolean => String(Math.floor(Number(value))) === value;

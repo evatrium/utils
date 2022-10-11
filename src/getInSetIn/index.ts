@@ -1,1 +1,1 @@
-export * from "./getInSetIn";
+export * from './getInSetIn';

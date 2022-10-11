@@ -1,1 +1,1 @@
-export * from './combineArraysAndDeduplicate'
+export * from './combineArraysAndDeduplicate';

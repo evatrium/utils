@@ -1,4 +1,4 @@
-import { isObject } from "~/isObject";
+import { isObject } from '~/isType';
 
 /**
  * like propsChanged but compares primitives as well

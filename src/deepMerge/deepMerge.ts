@@ -1,17 +1,13 @@
-import { ObjOrArrType } from "~/types";
-import { assign } from "~/assign";
-import { isObj } from "~/isObj";
-import { isFunc } from "~/isFunc";
+import { ObjOrArrType } from '~/types';
+import { assign } from '~/assign';
+import { isObj, isFunc } from '~/isType';
 
 type DeepMergeOptions = {
 	clone?: boolean;
-	arrayMerge?: "overwrite" | "concat" | "byIndex" | DeepMerge;
+	arrayMerge?: 'overwrite' | 'concat' | 'byIndex' | DeepMerge;
 };
 
-export type DeepMerge = <
-	T1 extends ObjOrArrType,
-	T2 extends Partial<T1 | ObjOrArrType>
->(
+export type DeepMerge = <T1 extends ObjOrArrType, T2 extends Partial<T1 | ObjOrArrType>>(
 	target: T1,
 	source: T2,
 	options?: DeepMergeOptions
@@ -33,7 +29,7 @@ export type DeepMerge = <
 export const deepMerge: DeepMerge = (
 	target,
 	source,
-	options: DeepMergeOptions = { clone: true, arrayMerge: "overwrite" }
+	options: DeepMergeOptions = { clone: true, arrayMerge: 'overwrite' }
 ) => {
 	const tArr = Array.isArray(target);
 	const sArr = Array.isArray(source);
@@ -53,9 +49,9 @@ export const deepMerge: DeepMerge = (
 		return options.arrayMerge(out, source, options);
 	}
 
-	if (bothObj || options.arrayMerge === "byIndex") {
+	if (bothObj || options.arrayMerge === 'byIndex') {
 		for (const key in source as ObjOrArrType) {
-			if (key === "__proto__") {
+			if (key === '__proto__') {
 				continue;
 			}
 			out[key] = deepMerge(target[key], source[key], options);
@@ -63,7 +59,7 @@ export const deepMerge: DeepMerge = (
 		return out;
 	}
 
-	if (options.arrayMerge === "concat") return out.concat(source);
+	if (options.arrayMerge === 'concat') return out.concat(source);
 
 	return source;
 };

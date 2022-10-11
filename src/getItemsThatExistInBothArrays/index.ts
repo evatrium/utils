@@ -1,1 +1,1 @@
-export * from './getItemsThatExistInBothArrays'
+export * from './getItemsThatExistInBothArrays';

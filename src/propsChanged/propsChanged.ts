@@ -15,10 +15,7 @@ export const fixedPropsChanged = (
  * checks if number of keys are the same
  * and compares each key value pair for equality "==="
  */
-export const propsChanged = (
-	prev: Record<string, any>,
-	next: Record<string, any>
-): boolean => {
+export const propsChanged = (prev: Record<string, any>, next: Record<string, any>): boolean => {
 	for (const i in prev) if (!(i in next)) return true;
 	return fixedPropsChanged(prev, next);
 };

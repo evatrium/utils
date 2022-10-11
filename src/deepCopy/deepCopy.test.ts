@@ -1,13 +1,9 @@
-import { describe, it, expect } from "vitest";
-import { deepCopy, simpleDeepCopy } from "~/deepCopy";
-import {
-	createData,
-	createSerializableData,
-	serializableDataNestedResult
-} from "~/_testUtils";
+import { describe, it, expect } from 'vitest';
+import { deepCopy, simpleDeepCopy } from '~/deepCopy';
+import { createData, createSerializableData, serializableDataNestedResult } from '~/_testUtils';
 
-describe("simpleDeepCopy", () => {
-	it("should make a copy of nested data. Original should not be equal to copy", () => {
+describe('simpleDeepCopy', () => {
+	it('should make a copy of nested data. Original should not be equal to copy', () => {
 		const originalData = createSerializableData(true);
 
 		const copy = simpleDeepCopy(originalData);
@@ -26,9 +22,7 @@ describe("simpleDeepCopy", () => {
 		expect(originalData.object === copy.object).toBeFalsy();
 		expect(originalData.object.nested === copy.object.nested).toBeFalsy();
 		expect(originalData.object.nested === copy.object.nested).toBeFalsy();
-		expect(
-			originalData.object.nested.object === copy.object.nested.object
-		).toBeFalsy();
+		expect(originalData.object.nested.object === copy.object.nested.object).toBeFalsy();
 
 		expect(originalData.array === copy.array).toBeFalsy();
 		expect(originalData.array[3] === copy.array[3]).toBeFalsy();
@@ -37,23 +31,23 @@ describe("simpleDeepCopy", () => {
 		expect(originalData.array[3].object === copy.array[3].object).toBeFalsy();
 	});
 
-	it("original should not change when copy is mutated", () => {
+	it('original should not change when copy is mutated', () => {
 		const originalData = createSerializableData(true);
 
 		const copy = simpleDeepCopy(originalData);
 
-		copy.object.foo = "baz";
+		copy.object.foo = 'baz';
 
-		expect(originalData.object.foo).toBe("bar");
+		expect(originalData.object.foo).toBe('bar');
 
-		copy.array.push("humidifier");
+		copy.array.push('humidifier');
 
-		expect(originalData.array).not.toContain("humidifier");
+		expect(originalData.array).not.toContain('humidifier');
 	});
 });
 
-describe("deepCopy", () => {
-	it("should make a copy of nested data. Original should not be equal to copy", () => {
+describe('deepCopy', () => {
+	it('should make a copy of nested data. Original should not be equal to copy', () => {
 		const originalData = createData(true);
 
 		const copy = deepCopy(originalData);
@@ -78,16 +72,12 @@ describe("deepCopy", () => {
 
 		expect(originalData.nested2.array[3]).not.toBeUndefined();
 		expect(originalData.nested2.array[3] === copy.nested2.array[3]).toBeFalsy();
-		expect(
-			originalData.nested2.array[3].array === copy.nested2.array[3].array
-		).toBeFalsy();
+		expect(originalData.nested2.array[3].array === copy.nested2.array[3].array).toBeFalsy();
 
-		expect(
-			originalData.nested2.array[3].object === copy.nested2.array[3].object
-		).toBeFalsy();
+		expect(originalData.nested2.array[3].object === copy.nested2.array[3].object).toBeFalsy();
 	});
 
-	it("should make copies of date objects, Maps, and Sets", () => {
+	it('should make copies of date objects, Maps, and Sets', () => {
 		const originalData = createData(true);
 
 		const copy = deepCopy(originalData);

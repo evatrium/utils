@@ -1,13 +1,10 @@
-import { signature } from "~/signature";
+import { signature } from '~/signature';
 
 export type MemoizedCache = { [key: string]: any }; // Record<string, any>;
 export type MemoizedFn<TFunc extends (this: any, ...args: any[]) => any> = {
 	clear: () => void;
 	cache: MemoizedCache;
-	(
-		this: ThisParameterType<TFunc>,
-		...args: Parameters<TFunc>
-	): ReturnType<TFunc>;
+	(this: ThisParameterType<TFunc>, ...args: Parameters<TFunc>): ReturnType<TFunc>;
 };
 
 /**
@@ -29,18 +26,15 @@ export type MemoizedFn<TFunc extends (this: any, ...args: any[]) => any> = {
 export function memoize<TFunc extends (this: any, ...newArgs: any[]) => any>(
 	fn: TFunc
 ): MemoizedFn<TFunc> {
-
-
-	const cache:MemoizedCache = Object.create(null);
+	const cache: MemoizedCache = Object.create(null);
 
 	function memoized(
 		this: ThisParameterType<TFunc>,
 		...newArgs: Parameters<TFunc>
 	): ReturnType<TFunc> | any {
-
 		const keyLookup = signature(newArgs);
 		let val = memoized.cache[keyLookup];
-		if (val === undefined){
+		if (val === undefined) {
 			val = memoized.cache[keyLookup] = fn.apply(this, newArgs);
 		}
 		return val;
@@ -54,7 +48,6 @@ export function memoize<TFunc extends (this: any, ...newArgs: any[]) => any>(
 
 	return memoized;
 }
-
 
 /*
 

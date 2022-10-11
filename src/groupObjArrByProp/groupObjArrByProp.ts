@@ -1,5 +1,5 @@
-import { Obj, ObjArr } from "~/types";
-import { isFunc } from "~/isFunc";
+import { Obj, ObjArr } from '~/types';
+import { isFunc } from '~/isType/isFunc';
 
 /**
  * Categorizes objects into groups
@@ -72,10 +72,7 @@ export const groupObjArrByProp = (
 			? getGroupNameFromObj(item)
 			: item[getGroupNameFromObj];
 		const shouldGroupIt = shouldGroup(groupName);
-		(shouldGroupIt
-			? groups[groupName] || (groups[groupName] = [])
-			: others
-		).push(item);
+		(shouldGroupIt ? groups[groupName] || (groups[groupName] = []) : others).push(item);
 	});
 	return [groups, others];
 };

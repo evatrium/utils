@@ -1,5 +1,5 @@
-import { excludeItemsFromArray } from "~/excludeItemsFromArray";
-import { MatchByOptions } from "~/getMatchBy";
+import { excludeItemsFromArray } from '~/excludeItemsFromArray';
+import { MatchByOptions } from '~/getMatchBy';
 
 /**
  * combines two arrays and removes duplicates

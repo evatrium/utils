@@ -1,1 +1,1 @@
-export * from "./sentenceCase";
+export * from './sentenceCase';
