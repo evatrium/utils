@@ -37,14 +37,14 @@
 		"test:ci": "vitest --run",
 		"lint": "eslint ./src --ext ts,tsx",
 		"lint:fix": "yarn lint --fix",
-		"format": "prettier ./src --write --ignore-unknown .",
+		"format": "prettier \"./src\" --write --ignore-unknown",
 		"type-check": "tsc --project tsconfig.json --pretty --noEmit",
 		"ci": "yarn lint && yarn type-check",
 		"_prepare": "husky install && husky add .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit",
 		"prepare": "husky install"
 	},
 	"lint-staged": {
-		"*.{js,jsx,ts,tsx,md}": "yarn lint:fix"
+		".ts?(x)": ["yarn lint:fix", "yarn format"]
 	},
 	"peerDependencies": {},
 	"devDependencies": {

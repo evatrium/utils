@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference types="vitest/config" />
 /// <reference types="vite/client" />
 import { resolve as pathResolve } from 'node:path';

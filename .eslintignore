@@ -5,3 +5,5 @@ dist
 node_modules
 #vite.config.ts
 _testUtils.ts
+*.d.ts
+commitlint.config.js
