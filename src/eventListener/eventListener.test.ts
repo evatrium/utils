@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { eventListener } from '~/eventListener';
-import { wait } from 'lib';
+import { wait } from '~/wait';
 
 describe('eventListener', () => {
 	it('listens and unlistens to events', async () => {

@@ -1,6 +1,6 @@
 {
 	"name": "@evatirum/utils",
-	"version": "0.0.0",
+	"version": "0.0.0-beta.0",
 	"description": "JavaScript Utilities",
 	"keywords": [],
 	"homepage": "https://github.com/evatrium/utils#readme",
@@ -12,10 +12,12 @@
 		"url": "https://github.com/evatrium/utils/issues"
 	},
 	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
 	"main": "dist/utils.cjs",
 	"module": "dist/utils.mjs",
 	"types": "dist/types/index.d.ts",
-	"private": true,
 	"source": "src",
 	"exports": {
 		".": {
@@ -35,16 +37,18 @@
 		"test": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:ci": "vitest --run",
-		"lint": "eslint ./src --ext ts,tsx",
-		"lint:fix": "yarn lint --fix",
-		"format": "prettier \"./src\" --write --ignore-unknown",
+		"lint": "eslint . --ext ts,tsx",
+		"lint:fix": "npm run lint --fix",
+		"format": "prettier . --write --ignore-unknown",
 		"type-check": "tsc --project tsconfig.json --pretty --noEmit",
-		"ci": "yarn lint && yarn type-check",
-		"_prepare": "husky install && husky add .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit",
+		"ci": "npm run lint && npm run type-check",
 		"prepare": "husky install"
 	},
 	"lint-staged": {
-		".ts?(x)": ["yarn lint:fix", "yarn format"]
+		"*.{js,ts,tsx}": [
+			"npm run lint:fix",
+			"npm run format"
+		]
 	},
 	"peerDependencies": {},
 	"devDependencies": {
@@ -58,7 +62,6 @@
 		"eslint": "8.22.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"husky": "7.0.4",
 		"jsdom": "^20.0.0",
 		"lint-staged": "^13.0.3",
 		"plop": "^3.1.1",
@@ -68,7 +71,8 @@
 		"vite": "^3.1.6",
 		"vite-plugin-dts": "0.9.10",
 		"vite-tsconfig-paths": "3.4.1",
-		"vitest": "^0.24.0"
+		"vitest": "^0.24.0",
+		"husky": "^8.0.0"
 	},
 	"dependencies": {}
 }

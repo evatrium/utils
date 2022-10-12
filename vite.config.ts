@@ -11,7 +11,7 @@ import packageJson from './package.json';
 
 const resolve = (path: string) => pathResolve(__dirname, path);
 
-const getPackageName = (name: string = ''): string => {
+const getPackageName = (name=''): string => {
 	let nameToUse = name;
 	if (name.startsWith('@')) nameToUse = name.split('/')[1];
 	return nameToUse.replace(/-./g, (char) => char[1].toUpperCase());
