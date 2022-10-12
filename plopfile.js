@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-default-export
 module.exports = (plop) => {
 	plop.setGenerator('component', {
 		description: 'Create a new component',

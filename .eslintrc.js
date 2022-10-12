@@ -7,10 +7,10 @@ module.exports = {
 		jest: true
 	},
 	extends: [
-		'prettier',
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended'
+		'plugin:prettier/recommended',
+		'prettier'
 	],
 	overrides: [],
 	parser: '@typescript-eslint/parser',
