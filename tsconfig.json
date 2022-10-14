@@ -16,15 +16,15 @@
 			"~/*": ["src/*"]
 		},
 		"lib": ["DOM", "DOM.Iterable", "ESNext", "dom"],
-		"jsx": "react-jsx",
+//		"jsx": "react-jsx",
 		"baseUrl": ".",
 		"types": [
 			"vite/client",
 			"node",
-			"react",
+//			"react",
 			"vitest/globals",
 			"@testing-library/jest-dom",
-			"jest"
+//			"jest"
 		],
 		// match output dir to input dir. e.g. dist/index instead of dist/app/index
 		//    "rootDir": ".",
