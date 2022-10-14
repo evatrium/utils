@@ -73,7 +73,6 @@ export const createDataManyTypes = (nested?: boolean) => {
 	};
 };
 
-// console.log(createSerializableData(true));
 export const serializableDataNestedResult = {
 	null: null,
 	string: 'foobar',
