@@ -34,7 +34,7 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm run sematic-release
+      - run: npm run semantic-release
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
