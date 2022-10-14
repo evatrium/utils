@@ -3,6 +3,7 @@ import { getMatchBy, MatchByOptions } from '~/getMatchBy';
 type ExcludeItemsFromArrayOptions = MatchByOptions & {
 	returnRemoved?: boolean;
 };
+
 /**
  * removes many items from an array
  * @param arr - the array to exclude items from
