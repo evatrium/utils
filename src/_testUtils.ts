@@ -22,7 +22,7 @@ class Classy {
 const func = () => 0;
 
 // @ts-ignore
-export const createSerializableData = (nested?: boolean, extra?: any) => ({
+export const createSerializableData = (nested?: boolean) => ({
 	null: null,
 	string: 'foobar',
 	number: 1,
