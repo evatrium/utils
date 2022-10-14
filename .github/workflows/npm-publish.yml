@@ -21,6 +21,7 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+      - run: npm run build
 
 # @TODO: set up npm token, semantic-release, commitizen
 
@@ -37,3 +38,28 @@ jobs:
 #      - run: npm publish --access=public
 #        env:
 #          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+
+
+#name: Publish package on NPM
+#
+#on:
+#  release:
+#    types: [created]
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-node@v2
+#        with:
+#          node-version: 16.x
+#          registry-url: https://registry.npmjs.org/
+#      - run: yarn
+#      - run: yarn ci
+#      - run: yarn build
+#      - run: npm publish --access=public
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
