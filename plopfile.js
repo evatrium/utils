@@ -7,9 +7,7 @@ module.exports = (plop) => {
 				name: 'name',
 				message: 'Name of the utility?',
 				validate: (value) => {
-					if (/.+/.test(value)) {
-						return true;
-					}
+					if (/.+/.test(value)) return true;
 					return 'The name is required';
 				}
 			}

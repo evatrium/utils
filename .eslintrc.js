@@ -20,7 +20,6 @@ module.exports = {
 	},
 	plugins: ['@typescript-eslint', 'prettier'],
 	rules: {
-		// docs say to include these so prettier plays well with eslint
 		'prettier/prettier': 'error',
 		'arrow-body-style': 'off',
 		'prefer-arrow-callback': 'off',
