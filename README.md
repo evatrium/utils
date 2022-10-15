@@ -7,9 +7,9 @@
     @evatrium/utils
     <br />
     <br />
-    
   </h1>
-	Lightweight lodash-like typescript utilities
+	<br />
+	Lightweight typescript utilities
   <sup>
     <br />
     <br />
