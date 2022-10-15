@@ -16,7 +16,7 @@ export const createProfile = () => ({
 });
 
 class Classy {
-	constructor(public foo: string) {} // eslint-disable-line
+	constructor(public foo: string) {}
 }
 
 const func = () => 0;
