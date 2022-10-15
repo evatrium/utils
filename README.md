@@ -17,7 +17,9 @@
     <a href="https://www.npmjs.com/package/@evatrium/utils">
        <img src="https://img.shields.io/npm/v/@evatrium/utils.svg" alt="npm package" />
     </a>
-<img src="https://github.com/evatrium/utils/actions/workflows/npm-publish.yml/badge.svg" alt="build" />
+		<a href="https://github.com/evatrium/utils/actions">
+			<img src="https://github.com/evatrium/utils/actions/workflows/npm-publish.yml/badge.svg" alt="build" />
+		</a>
   </sup>
   <br />
   <br />
