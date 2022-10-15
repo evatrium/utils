@@ -6,10 +6,12 @@
     <br />
     @evatrium/utils
     <br />
+    <br />
     
   </h1>
 	Lightweight lodash-like typescript utilities
   <sup>
+    <br />
     <br />
     <br />
     <a href="https://www.npmjs.com/package/@evatrium/utils">
@@ -17,6 +19,7 @@
     </a>
 <img src="https://github.com/evatrium/utils/actions/workflows/npm-publish.yml/badge.svg" alt="build" />
   </sup>
+  <br />
   <br />
 
   <pre>npm install @evatrium/utils</pre>
