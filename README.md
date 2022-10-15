@@ -1,11 +1,29 @@
-# @evatrium/utils
+<div align="center">
+  <h1>
+    <br/>
+    <br/>
+    	🛠
+    <br />
+    @evatrium/utils
+    <br />
+    
+  </h1>
+	Lightweight lodash-like typescript utilities
+  <sup>
+    <br />
+    <br />
+    <a href="https://www.npmjs.com/package/@evatrium/utils">
+       <img src="https://img.shields.io/npm/v/@evatrium/utils.svg" alt="npm package" />
+    </a>
+<img src="https://github.com/evatrium/utils/actions/workflows/npm-publish.yml/badge.svg" alt="build" />
+  </sup>
+  <br />
 
-> Lightweight lodash-like typescript utilities. 
+  <pre>npm install @evatrium/utils</pre>
+  <br />
+</div>
 
-#### Installation
-``` 
-npm install @evatrium/utils
-```
+
 #### Usage
 ```typescript
 import { capitalize, debounce, deepMerge } from '@evatrium/utils';
