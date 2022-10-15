@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { sentenceCase } from '~/sentenceCase';
+import { sentenceCase } from './sentenceCase';
 
 describe('sentenceCase', () => {
 	it('returns expected output', () => {

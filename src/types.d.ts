@@ -21,3 +21,5 @@ export type JsonLikeType =
 	| null
 	| JsonLikeType[]
 	| { [key: string | number]: JsonLikeType };
+
+export type EmitsEvents = Window | Document | HTMLElement | EventTarget;

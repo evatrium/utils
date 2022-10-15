@@ -1,5 +1,4 @@
 import { ObjOrArrType } from '~/types';
-import { assign } from '~/assign';
 import { isObj, isFunc } from '~/isType';
 
 type DeepMergeOptions = {
@@ -42,7 +41,7 @@ export const deepMerge: DeepMerge = (
 
 	let out: ObjOrArrType = target;
 
-	if (options.clone) out = assign(tArr ? [] : {}, target);
+	if (options.clone) out = tArr ? [...target] : { ...target };
 
 	if (bothArr && isFunc(options.arrayMerge)) {
 		// @ts-ignore

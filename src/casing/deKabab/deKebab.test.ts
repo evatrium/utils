@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { deKebab } from '~/deKabab';
+import { deKebab } from './deKebab';
 
 describe('deKabab', () => {
 	it('returns expected output', () => {

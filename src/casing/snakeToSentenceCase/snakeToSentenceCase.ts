@@ -1,5 +1,5 @@
-import { deSnake } from '~/deSnake';
-import { sentenceCase } from '~/sentenceCase';
+import { deSnake } from '~/casing';
+import { sentenceCase } from '~/casing';
 
 /**
  * snake_case => Sentence Case
