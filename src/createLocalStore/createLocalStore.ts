@@ -2,7 +2,7 @@ import { jsonParse, JsonParseResults } from '~/jsonParse';
 import { isWeb } from '~/isWeb';
 import { eventListener } from '~/eventListener';
 import { debounce } from '~/debounce';
-import { createSubscription, SubscriptionInstance } from '~/createSubscription';
+import { createSubscription, ReturnedUnsubscriber } from '~/createSubscription';
 
 export type LocalStoreOptions = {
 	debounceTime?: number;
@@ -34,6 +34,24 @@ type KeySubscriptionData = Pick<JsonParseResults, 'data'> | null;
  *
  */
 export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) => {
+	// mock
+	let ls: any = {
+		_store: {},
+		getItem(key: string): any {
+			return this._store[key] || null;
+		},
+		setItem(key: string, val: any) {
+			return (this._store[key] = val);
+		},
+		clear() {
+			this._store = {};
+		},
+		removeItem(key: string) {
+			delete this._store[key];
+		}
+	};
+
+	isWeb() && (ls = window.localStorage);
 	/**
 	 * JSON.stringifies the value before setting it to local storage.
 	 * @param key
@@ -76,13 +94,15 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 	 * Subscribes to any storage event that happens on other browser tabs.
 	 * @param callback
 	 */
-	const subscribe = (callback: (e: StorageEventInit) => void) => {
-		if (!_storageEventSubscription) {
-			_storageEventSubscription = createSubscription();
-			// this lets us use only one storage event listener and publish to all subscribers
-			isWeb && eventListener(window, 'storage', _storageEventSubscription.pub);
-		}
-		return _storageEventSubscription.sub(callback); // returns unsub
+	const subscribe = (callback: (e: StorageEventInit) => void): ReturnedUnsubscriber => {
+		//@ts-ignore
+		if (!createLocalStore._storageEventSubscription) {
+			// @ts-ignore
+			createLocalStore._storageEventSubscription = createSubscription();
+			// @ts-ignore this lets us use only one storage event listener and publish to all subscribers
+			isWeb() && eventListener(window, 'storage', createLocalStore._storageEventSubscription.pub);
+		} // @ts-ignore
+		return createLocalStore._storageEventSubscription.sub(callback); // returns unsub
 	};
 
 	/**
@@ -110,24 +130,3 @@ export const createLocalStore = ({ debounceTime = 0 }: LocalStoreOptions = {}) =
 		subscribeToKey
 	};
 };
-
-let _storageEventSubscription: SubscriptionInstance;
-
-// mock
-let ls: any = {
-	_store: {},
-	getItem(key: string): any {
-		return this._store[key] || null;
-	},
-	setItem(key: string, val: any) {
-		return (this._store[key] = val);
-	},
-	clear() {
-		this._store = {};
-	},
-	removeItem(key: string) {
-		delete this._store[key];
-	}
-};
-
-isWeb && (ls = window.localStorage);

@@ -2,7 +2,7 @@ type SubscriptionCallback = (...update: any[]) => void;
 
 type UnSubscribeFunc = (subscription: SubscriptionCallback) => void;
 
-type ReturnedUnsubscriber = () => UnSubscribeFunc;
+export type ReturnedUnsubscriber = () => UnSubscribeFunc;
 
 type SubscribeFunc = (subscriber: SubscriptionCallback) => ReturnedUnsubscriber;
 

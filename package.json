@@ -19,6 +19,7 @@
   "module": "dist/utils.mjs",
   "types": "dist/types/index.d.ts",
   "source": "src",
+	"sideEffects": false,
   "exports": {
     ".": {
       "import": "./dist/utils.mjs",
